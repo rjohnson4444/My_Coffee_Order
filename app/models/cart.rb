@@ -4,7 +4,7 @@ class Cart
     @contents = raw_data || {}
   end
 
-  def add_items(item_id)
+  def add_item(item_id)
     contents[item_id.to_s] ||= 0
     contents[item_id.to_s] += 1
   end
