@@ -1,0 +1,4 @@
+<h1>Category<%="#{@category.name}" %></h1>
+<% @category.items.each do |item| %>
+  <%= item.title %>
+<% end %>
