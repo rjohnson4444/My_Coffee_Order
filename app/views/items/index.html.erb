@@ -13,6 +13,9 @@
 </head>
 <br>
 <h1 class='container'>Menu Items</h1>
+<!-- <div class="parallax-container">
+   <div class="parallax"><img src="cshop.jpg"></div> -->
+ </div>
 <body>
 </div>
 
@@ -29,10 +32,10 @@
 <tbody>
     <tr>
 
-<div id="item<%= "#{item.id}"%> ">
+<div id="item<%="#{item.id}"%>">
   <td > <%= item.title %> </td>
 <td> <%= number_to_currency(item.price) %></td>
-<td class="waves-effect waves-light btn"> Add to cart <%cart_items_path(id: item.id) %> </td>
+<td> <%=button_to "Add to Cart", cart_items_path(id: item.id)%></td>
 
 </div>
 <div id="butooon">
