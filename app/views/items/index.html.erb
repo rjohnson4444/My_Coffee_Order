@@ -1,3 +1,9 @@
 <%@items.each do |item| %>
+<div id="item<%= "#{item.id}"%>">
 <li> <%= item.title %>  </li>
+  <%= button_to "Add to Cart", cart_items_path(id: item.id) %>
+</div>
 <% end %>
+<div id="butooon">
+  <%= button_to "View Cart", cart_items_path, method: :get %>
+</div>
