@@ -1,11 +1,39 @@
-<%@items_in_cart.each do |item| %>
-  <div id="item<%= "#{item.id}"%>">
-  <li> <%= item.title %>  </li>
-  <li> <%= item.description %>  </li>
-  <li> <%= number_to_currency(item.price) %>  </li>
-  <li> <%= image_tag(item.image) %>  </li>
-  </div>
-<% end %>
+<head>
+  <nav>
+    <div class="nav-wrapper #000000 black">
+      <a href="#" class="brand-logo ">My Coffee Now</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down #40c4ff light-blue accent-2">
+        <li><a href="sass.html">Login</a></li>
+        <li><a href="badges.html">Menu</a></li>
+        <li><a href="collapsible.html">Cart</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</head>
+<br>
+<h1 class="container">Items In Cart</h1>
+<table>
+  <tr>
+    <td data-field="name">Item Name</td>
+    <td data-field="description">Item Description</td>
+    <td data-field="price"> Price</td>
+    <td data-field='image'>Picture</td>
+  </tr>
+
+  <%@items_in_cart.each do |item| %>
+
+  <tr>
+    <div id="item<%= "#{item.id}"%>">
+      <td> <%= item.title %>  </td>
+      <td> <%= item.description %>  </td>
+      <td> <%= number_to_currency(item.price) %>  </td>
+      <!-- <td> <%= image_tag(item.image) %>  </td> -->
+    </div>
+    <% end %>
+  </tr>
+</table>
+<br>
 <div class="">
   <%= number_to_currency(@sum) %>
 </div>
