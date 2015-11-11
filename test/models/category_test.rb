@@ -1,14 +1,12 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  def valid_attributes
-    @category = Category.new(name: "Coffee")
+  def valid_category
+    Category.new(name: "Coffee")
   end
 
   test "is valid" do
-    valid_attributes
-
-    assert @category.valid?
+    assert valid_category.valid?
   end
 
   test "is invalid without a name" do
@@ -18,8 +16,6 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "is associated with items" do
-    valid_attributes
-
-    assert_respond_to @category, :items
+    assert_respond_to valid_category, :items
   end
 end
