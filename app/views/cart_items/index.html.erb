@@ -1,0 +1,11 @@
+<%@items_in_cart.each do |item| %>
+  <div id="item<%= "#{item.id}"%>">
+  <li> <%= item.title %>  </li>
+  <li> <%= item.description %>  </li>
+  <li> <%= number_to_currency(item.price) %>  </li>
+  <li> <%= image_tag(item.image) %>  </li>
+  </div>
+<% end %>
+<div class="">
+  <%= number_to_currency(@sum) %>
+</div>

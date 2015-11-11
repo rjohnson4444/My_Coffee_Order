@@ -1,5 +1,10 @@
 class CartItemsController < ApplicationController
 
+  def index
+    @items_in_cart = Item.find(items_id_in_cart)
+    @sum = @items_in_cart.map { |item| item.price}.sum
+  end
+
   def create
     item = Item.find(params[:id].to_i)
     @cart.add_item(item.id)

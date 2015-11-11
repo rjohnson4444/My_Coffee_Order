@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   def set_cart
     @cart = Cart.new(session[:cart])
   end
+
+  def items_id_in_cart
+    session[:cart].keys.map { |id| id.to_i}
+  end
+
 end

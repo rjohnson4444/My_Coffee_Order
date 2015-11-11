@@ -9,10 +9,6 @@ class Cart
     contents[item_id.to_s] += 1
   end
 
-  def total
-
-  end
-
   # def count_of(item_id)
   #   contents[item_id.to_s]
   # end
