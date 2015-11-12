@@ -17,4 +17,8 @@ class UnregisteredUserCanViewCategoriesOfItemsTest < ActionDispatch::Integration
       assert page.has_content?("Chai Tea")
     # end
   end
+
+  test 'url displays category name in url'
+
+  end
 end
