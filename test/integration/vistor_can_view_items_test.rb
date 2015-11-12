@@ -11,8 +11,8 @@ class VistorCanViewItemsTest < ActionDispatch::IntegrationTest
   test 'an unregistered user can view items' do
     create_items(3)
     visit items_path
-    save_and_open_page
 
-      assert page.has_content?('latte')
+    # adding within css not working
+    assert page.has_content?('latte')
   end
 end
