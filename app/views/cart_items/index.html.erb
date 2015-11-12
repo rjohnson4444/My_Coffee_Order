@@ -18,7 +18,8 @@
     <td data-field="name">Item Name</td>
     <td data-field="description">Item Description</td>
     <td data-field="price"> Price</td>
-    <td data-field='image'>Picture</td>
+    <!-- <td data-field='image'>Picture</td> -->
+    <td data-field='quantity'>Quantity</td>
   </tr>
 
   <%@items_in_cart.each do |item| %>
@@ -28,12 +29,16 @@
       <td> <%= item.title %>  </td>
       <td> <%= item.description %>  </td>
       <td> <%= number_to_currency(item.price) %>  </td>
+
       <!-- <td> <%= image_tag(item.image) %>  </td> -->
+      <td>quantity:<%=item.quantity%> <%= button_to "+", cart_item_path(item.id), method: :put %>  </td>
+
     </div>
-    <% end %>
   </tr>
+    <% end %>
+
 </table>
 <br>
 <div class="">
-  <%= number_to_currency(@sum) %>
+  <%= number_to_currency(@total) %>
 </div>

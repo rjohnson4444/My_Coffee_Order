@@ -28,6 +28,7 @@ gem 'minitest-emoji'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'materialize-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
