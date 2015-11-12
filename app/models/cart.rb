@@ -9,11 +9,15 @@ class Cart
     contents[item_id.to_s] += 1
   end
 
+  def minus_item(item_id)
+    if contents[item_id.to_s] > 0
+      contents[item_id.to_s] -= 1
+    end 
+  end
+
   def sum
     drinks.map {|total|total.sum}.reduce(:+)
   end
-
-
 
   def drinks
     contents.map do |item_id, quantity|
@@ -35,7 +39,6 @@ class CartCoffee < SimpleDelegator#look into SimpleDelegator
     super(item)
     @quantity = quantity
     @sum = sum
-
   end
 
   def sum_of_price
