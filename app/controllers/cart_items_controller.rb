@@ -1,9 +1,9 @@
 class CartItemsController < ApplicationController
 
   def index
-    @items_in_cart = Item.find(items_id_in_cart)
-    @sum = @items_in_cart.map { |item| item.price}.sum
-    @quantity = @cart.contents.values
+    @items_in_cart = @cart.drinks
+    @total = @cart.sum
+
   end
 
   def create
