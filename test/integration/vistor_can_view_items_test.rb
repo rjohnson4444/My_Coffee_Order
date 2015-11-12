@@ -12,6 +12,7 @@ class VistorCanViewItemsTest < ActionDispatch::IntegrationTest
     create_items(3)
     visit items_path
 
+    # adding within css not working
     assert page.has_content?('latte')
   end
 end
