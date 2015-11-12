@@ -3,7 +3,6 @@ class CartItemsController < ApplicationController
   def index
     @items_in_cart = @cart.drinks
     @total = @cart.sum
-
   end
 
   def create

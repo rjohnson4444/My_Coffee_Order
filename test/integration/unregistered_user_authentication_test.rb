@@ -9,6 +9,10 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
+  def create_user
+    User.create(username: "user", password: "password")
+  end
+
   test "unregistered user can register" do
     visit '/'
 
@@ -21,11 +25,14 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     click_button "Create Account"
 
     assert '/dashboard', current_path
+
     assert page.has_content?("Logged in as User")
+    assert page.has_content?("User's Dashboard")
   end
 
   test "unregistered user can login" do
-    skip
+    create_user
+    user = User.find_by(username: 'user')
     visit '/'
 
     assert page.has_link?("Login")
@@ -33,30 +40,29 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
 
     assert '/login', current_path
 
-    fill_in "Username", with: "Coffee"
+    fill_in "Username", with: "user"
     fill_in "Password", with: "password"
 
     click_button "Login"
 
-    assert user_path, current_path
-    assert page.has_content?("Logged in as Coffee")
-    assert page.has_content?("Username: Coffee")
+    assert user_path(user), current_path
+    assert page.has_content?("Logged in as user")
+    assert page.has_content?("Username: user")
 
     refute page.has_link?("Login")
     assert page.has_link?("Logout")
   end
 
   test "logged in user can see coffee items" do
-    skip
     create_category_and_items(1)
     logged_in_user
 
+
     visit items_path
 
-    assert page.has_content?("pour over1")
-    assert page.has_content?("drip1")
+    assert page.has_content?("pour over0")
+    assert page.has_content?("drip0")
     assert page.has_content?("$4.00")
-    assert page.has_content?("quantity:1")
 
     click_link "Logout"
 

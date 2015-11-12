@@ -3,8 +3,19 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "Logged in as #{@user.username.capitalize}"
+      redirect_to @user
+    else
+      # something if the user is not valid
+    end
   end
 
 
