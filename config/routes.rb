@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :index, :create, :show]
   resources :items, only: [:index]
   resources :categories, only: [:show]
-  resources :cart_items, only: [:create, :show, :index, :update]
+  resources :cart_items, only: [:create, :show, :index, :update,:destroy]
 end

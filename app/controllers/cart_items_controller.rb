@@ -24,4 +24,13 @@ class CartItemsController < ApplicationController
 
   end
 
+  def destroy
+  item = Item.find(params[:id].to_i)
+   if @cart.contents.delete_if { |item_id,quantity| item_id == params[:id] }
+   flash[:delete] = "Successfully removed #{item.title} from your cart"
+     redirect_to cart_items_path
+
+    end
+  end
+
 end

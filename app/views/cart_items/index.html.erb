@@ -6,6 +6,7 @@
     <td data-field="price"> Price</td>
     <!-- <td data-field='image'>Picture</td> -->
     <td data-field='quantity'>Quantity</td>
+    <td data-field="remove">Remove</td>
   </tr>
 
   <%@items_in_cart.each do |item| %>
@@ -16,8 +17,10 @@
       <td> <%= number_to_currency(item.price) %>  </td>
 
       <!-- <td> <%= image_tag(item.image) %>  </td> -->
+
       <td>quantity:<%=item.quantity%> <%= button_to "+", cart_item_path(item.id), method: :put %>  </td>
 
+      <td><%= link_to "Remove",cart_item_path(item.id), method: :delete %></td>
     </div>
   </tr>
   <% end %>

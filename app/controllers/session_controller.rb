@@ -6,9 +6,11 @@ class SessionController < ApplicationController
     @user = User.find_by_username(params[:session][:username])
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
+      flash[:success] = "#{@user.username} has logged in"
       redirect_to user_path @user.id
     else
-
+      flash.now[:error] = "Invalid Credentials. Try again."
+      render :new
     end
   end
 

@@ -13,6 +13,8 @@ class Cart
     drinks.map {|total|total.sum}.reduce(:+)
   end
 
+
+
   def drinks
     contents.map do |item_id, quantity|
     item = Item.find(item_id)

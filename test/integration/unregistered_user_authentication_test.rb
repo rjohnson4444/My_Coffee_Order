@@ -46,7 +46,7 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     click_button "Login"
 
     assert user_path(user), current_path
-    assert page.has_content?("Logged in as user")
+    assert page.has_content?("user has logged in")
     assert page.has_content?("Username: user")
 
     refute page.has_link?("Login")
