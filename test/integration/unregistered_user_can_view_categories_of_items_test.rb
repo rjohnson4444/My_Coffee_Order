@@ -10,10 +10,11 @@ class UnregisteredUserCanViewCategoriesOfItemsTest < ActionDispatch::Integration
     category_two.items.create(title: "Chai Tea",      description: 'forthy deliciousness',       price: 4.00, image: "google.com")
     category_two.items.create(title: "Cappuccino", description: 'super forthy deliciousness', price: 4.00, image: "google.com")
 
-      visit category_path(category_two.id)
-        # When I visit "/CATEGORY_NAME"
-        # I see all items assigned to that category
-
+    visit category_path(category_two.id)
+      # When I visit "/CATEGORY_NAME"
+      # I see all items assigned to that category
+    # within("#item#{item1.id}") do
       assert page.has_content?("Chai Tea")
+    # end
   end
 end
