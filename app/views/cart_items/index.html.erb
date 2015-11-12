@@ -1,17 +1,3 @@
-<head>
-  <nav>
-    <div class="nav-wrapper #000000 black">
-      <a href="#" class="brand-logo ">My Coffee Now</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down #40c4ff light-blue accent-2">
-        <li><a href="sass.html">Login</a></li>
-        <li><a href="badges.html">Menu</a></li>
-        <li><a href="collapsible.html">Cart</a></li>
-      </ul>
-    </div>
-  </nav>
-
-</head>
-<br>
 <h1 class="container">Items In Cart</h1>
 <table>
   <tr>
@@ -23,7 +9,6 @@
   </tr>
 
   <%@items_in_cart.each do |item| %>
-
   <tr>
     <div id="item<%= "#{item.id}"%>">
       <td> <%= item.title %>  </td>
@@ -35,10 +20,11 @@
 
     </div>
   </tr>
-    <% end %>
+  <% end %>
 
 </table>
 <br>
+
 <div class="">
   <%= number_to_currency(@total) %>
 </div>
