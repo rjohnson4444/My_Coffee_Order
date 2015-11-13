@@ -1,3 +1,4 @@
+require_relative 'cart_coffee'
 class Cart
   attr_reader :contents
   def initialize(raw_data)
@@ -12,7 +13,7 @@ class Cart
   def minus_item(item_id)
     if contents[item_id.to_s] > 0
       contents[item_id.to_s] -= 1
-    end 
+    end
   end
 
   def sum
@@ -26,27 +27,4 @@ class Cart
     CartCoffee.new(item, quantity, sum)
     end
   end
-
-
-  # def count_of(item_id)
-  #   contents[item_id.to_s]
-  # end
 end
-
-class CartCoffee < SimpleDelegator#look into SimpleDelegator
-  attr_reader :item, :quantity, :sum
-  def initialize(item, quantity, sum)
-    super(item)
-    @quantity = quantity
-    @sum = sum
-  end
-
-  def sum_of_price
-
-  end
-end
-
-
-# @cart.drinks.each do |cart_coffee|
-#   cart_coffee.item.name
-# end

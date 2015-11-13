@@ -11,7 +11,7 @@ class RemovingAnItemTest < ActionDispatch::IntegrationTest
      end
      click_button "View Cart"
      assert page.has_content?("$4.00")
-    #  assert page.has_content?("quantity:1")
+      assert page.has_content?("1")
      click_link "Remove"
      assert page.has_content?("Successfully removed pour over1 from your cart")
    end
