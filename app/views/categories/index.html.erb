@@ -22,7 +22,8 @@
   <%@categories.each do |category| %>
   <tr>
     <div id="category<%= "#{category.id}"%>">
-      <td> <%=link_to category.name, category_path(category.id) %>  </td>
+      <%= binding.pry %>
+      <td> <%=link_to category.name, category_path(category.slug) %>  </td>
     </div>
   </tr>
     <% end %>
