@@ -40,7 +40,7 @@ class UnregisteredUserCanAddItemsToCartTest < ActionDispatch::IntegrationTest
       click_button "View Cart"
     within("#item#{item1.id}") do
       assert page.has_content?("$4.00")
-      # assert page.has_content?("1")
+      assert page.has_content?("1")
     end
     visit items_path
     within("#item#{item1.id}") do
