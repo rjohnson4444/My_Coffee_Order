@@ -17,7 +17,11 @@ class Cart
   end
 
   def sum
-    drinks.map {|total|total.sum}.reduce(:+)
+    drinks.map {|drink| drink.sum}.reduce(:+)
+  end
+
+  def total_quantity
+    drinks.map {|drink| drink.quantity}.reduce(:+)
   end
 
   def drinks

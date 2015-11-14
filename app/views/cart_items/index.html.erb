@@ -19,7 +19,7 @@
       <td> <%= number_to_currency(item.price) %>  </td>
       <td> <%= number_to_currency(item.sum) %> </td>
       <!-- <td> <%= image_tag(item.image) %>  </td> -->
-      <td>  <%=item.quantity%>  </td>
+      <td>  <%=item.quantity%> </td>
       <td> <%=button_to " - ",cart_item_path(item.id), method: :put  %><%= button_to "+", cart_item_path(item.id, edit_action: 'add'), method: :put %>     </td>
       <td><%= link_to "Remove",cart_item_path(item.id), method: :delete %></td>
     </div>
@@ -29,5 +29,9 @@
 </table>
 <br>
 <div id="order_total">
-Total:  <%= number_to_currency(@total) %>
+Total:  <%= number_to_currency(@cart.sum) %>
+Total Quantity: <%= @cart.total_quantity %>
+</div>
+<div class="butooon2">
+   <%= button_to "Checkout", orders_path(sum: @cart.sum, quantity: @cart.total_quantity) %>
 </div>
