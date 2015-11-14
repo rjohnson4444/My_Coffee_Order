@@ -25,4 +25,9 @@ class ActionDispatch::IntegrationTest
   def teardown
     reset_session!
   end
+
+  def create_user
+    User.create(username: 'ryan',
+                password: 'waffles')
+  end 
 end
