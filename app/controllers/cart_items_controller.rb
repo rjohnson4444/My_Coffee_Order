@@ -18,10 +18,10 @@ class CartItemsController < ApplicationController
     item = Item.find(params[:id].to_i)
     if params[:edit_action] == 'add'
       @cart.add_item(item.id)
-      redirect_to cart_items_path
+      redirect_to cart_path
     else
       @cart.minus_item(item.id)
-      redirect_to cart_items_path
+      redirect_to cart_path
 
     end
   end
@@ -33,7 +33,7 @@ class CartItemsController < ApplicationController
   item = Item.find(params[:id].to_i)
    if @cart.contents.delete_if { |item_id,quantity| item_id == params[:id] }
    flash[:delete] = "Successfully removed #{item.title} from your cart"
-     redirect_to cart_items_path
+     redirect_to cart_path
     end
   end
 end

@@ -1,16 +1,23 @@
 class OrdersController < ApplicationController
 
   def create
-    binding.pry
+
      @order = Order.new(quantity: params[:quantity] , sum: params[:sum] )
      if @order.save
-       redirect_to order_path
+       redirect_to orders_path
      else
      end
   end
 
   def show
-    @orders = current_user.orders
+
+    if current_user
+      @orders = current_user.orders
+      flash[:order] = "Order was succefully placed"
+    else
+      flash[:login] ="Must Login"
+      redirect_to login_path
+    end
   end
 
 end
