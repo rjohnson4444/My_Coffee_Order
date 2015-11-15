@@ -5,9 +5,35 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
   # Background: An existing user that has one previous order
 
   test 'a registered user can view past orders' do
-    #
-    # create_user
-    # visit order_path
+
+    user = create_user
+    create_category_and_items(1)
+    item1 = Item.find_by(title: "pour over0")
+    order = user.orders.create(sum: 4, quantity: 1)
+    visit items_path
+    within "#item#{item1.id}" do
+      click_button "Add to Cart"
+    end
+    click_button "View Cart"
+    click_button "Checkout"
+    fill_in 'Username', with: 'ryan'
+    fill_in "Password", with: 'waffles'
+    click_button "Login"
+
+    assert '/dashboard', current_path
+
+    click_link "Cart"
+    click_button "Checkout"
+
+    click_link "Logout"
+    click_link "Login"
+
+    fill_in 'Username', with: 'ryan'
+    fill_in "Password", with: 'waffles'
+    click_button "Login"
+
+    visit order_path(user.orders.last)
+    assert page.has_content?("pour over0")
     #   As an authenticated user
     #   When I visit "/orders"
     #   Then I should see my past order
