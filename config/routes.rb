@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :items, only: [:index]
   resources :categories, only: [:index]
   get '/categories/:slug', to: 'categories#show', as: "category"
-  resources :cart_items, only: [:create, :show, :index, :update, :destroy]
+  resources :cart_items, only: [:create, :show, :update, :destroy]
+  get '/cart', to: 'cart_items#index'
   resources :orders, only: [:create]
   get '/orders', to: 'orders#show'
 end

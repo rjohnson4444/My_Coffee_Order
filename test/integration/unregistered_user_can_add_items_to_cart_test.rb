@@ -17,7 +17,7 @@ class UnregisteredUserCanAddItemsToCartTest < ActionDispatch::IntegrationTest
     end
 
     click_button "View Cart"
-    assert cart_items_path, current_path
+    assert cart_path, current_path
 
     within("#item#{item1.id}") do
       assert page.has_content?("pour over")

@@ -41,7 +41,7 @@ class RegisteredUserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
 
     order = user.orders.create(quantity: 5, sum: 20)
     visit orders_path
-
+# 
     assert page.has_content?("Order number:#{order.id}")
 
     assert page.has_content?("Order total: $20.00")
