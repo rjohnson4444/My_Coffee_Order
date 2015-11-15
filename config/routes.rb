@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/categories/:slug', to: 'categories#show', as: "category"
   resources :cart_items, only: [:create, :show, :update, :destroy]
   get '/cart', to: 'cart_items#index'
-  resources :orders, only: [:create]
-  get '/orders', to: 'orders#show'
+  resources :orders, only: [:create,:show]
+  get '/orders', to: 'orders#index'
+
 end
