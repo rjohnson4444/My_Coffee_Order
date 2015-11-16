@@ -4,6 +4,7 @@ require 'rails/test_help'
 require 'minitest/emoji'
 require 'capybara/rails'
 require 'pry'
+require 'mocha/mini_test'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -13,6 +14,18 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def make_admin
+    User.create(username: "admin", password: "pw", role: 1)
+  end
+
+  def logged_in_user
+    User.create(username: "user", password: "password")
+    visit '/login'
+    fill_in "Username", with: "user"
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
 
   def create_category_and_items(num)
     num.times do |i|
@@ -29,5 +42,5 @@ class ActionDispatch::IntegrationTest
   def create_user
     User.create(username: 'ryan',
                 password: 'waffles')
-  end 
+  end
 end
