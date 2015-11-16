@@ -19,6 +19,15 @@ class ActionDispatch::IntegrationTest
     User.create(username: "admin", password: "pw", role: 1)
   end
 
+  def logged_in_admin
+    User.create(username: "admin", password: "pw", role: 1)
+    visit login_path
+
+    fill_in "Username", with: "admin"
+    fill_in "Password", with: "pw"
+    click_button "Login"
+  end
+
   def logged_in_user
     User.create(username: "user", password: "password")
     visit '/login'

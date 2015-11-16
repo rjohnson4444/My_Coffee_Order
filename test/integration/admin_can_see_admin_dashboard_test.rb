@@ -19,7 +19,6 @@ class AdminCanSeeAdminDashboardTest < ActionDispatch::IntegrationTest
   end
 
   test "unregistered user cannot view admin dashboard" do
-
     create_user
     visit '/admin/dashboard'
 
