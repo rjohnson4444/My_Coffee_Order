@@ -1,14 +1,6 @@
 require 'test_helper'
 
 class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
-  def logged_in_user
-    User.create(username: "user", password: "password")
-    visit '/login'
-    fill_in "Username", with: "user"
-    fill_in "Password", with: "password"
-    click_button "Login"
-  end
-
   def create_user
     User.create(username: "user", password: "password")
   end
@@ -46,7 +38,8 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     click_button "Login"
 
     assert dashboard_path, current_path
-    assert page.has_content?("user has logged in")
+    assert page.has_content?("user has logged in
+    ")
     assert page.has_content?("Username: user")
 
     refute page.has_link?("Login")
