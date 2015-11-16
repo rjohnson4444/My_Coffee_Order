@@ -5,7 +5,7 @@
     <td data-field="description">Item Description</td>
     <td data-field="price"> Price</td>
     <td data-field='sub_total'>sub_total </td>
-    <!-- <td data-field='image'>Picture</td> -->
+    <td data-field='image'>Picture</td>
     <td data-field='quantity'>Quantity</td>
     <td data-field="adjust'">  Adjust Quantity  </td>
     <td data-field="remove">Remove</td>
@@ -18,7 +18,7 @@
       <td> <%= item.description %>  </td>
       <td> <%= number_to_currency(item.price) %>  </td>
       <td> <%= number_to_currency(item.sum) %> </td>
-      <!-- <td> <%= image_tag(item.image) %>  </td> -->
+      <td> <%= image_tag(item.image) %></td>
       <td>  <%=item.quantity%> </td>
       <td> <%=button_to " - ",cart_item_path(item.id), method: :put  %><%= button_to "+", cart_item_path(item.id, edit_action: 'add'), method: :put %>     </td>
       <td><%= link_to "Remove",cart_item_path(item.id), method: :delete %></td>
