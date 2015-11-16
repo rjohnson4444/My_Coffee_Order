@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   delete '/logout', to: 'session#destroy'
   get '/dashboard', to: 'users#show'
   resources :users, only: [:new, :index, :create]
-  resources :items, only: [:index]
+  resources :items, only: [:index, :show]
   resources :categories, only: [:index]
   get '/categories/:slug', to: 'categories#show', as: "category"
   resources :cart_items, only: [:create, :show, :update, :destroy]
   get '/cart', to: 'cart_items#index'
-  resources :orders, only: [:create,:show]
   get '/orders', to: 'orders#index'
+  resources :orders, only: [:create,:show]
 
 end

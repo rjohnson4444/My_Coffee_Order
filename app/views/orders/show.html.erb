@@ -1,0 +1,12 @@
+<h1> <%=current_user.username%>'s Past Orders </h1>
+
+<% @order.items.each do |item| %>
+
+<li> <%= link_to "#{item.title}", item_path(item)%> </li>
+<li> <%=item.title  %>'s quantity:<%= @order.quantity_of_item(item.id) %> </li>
+<li><%= number_to_currency(item.price) %> </li>
+<% end %>
+<li>total quantity: <%=@order.quantity %>  </li>
+<li> <%= @order.created_at %> </li>
+<li><%=number_to_currency(@order.sum) %></li>
+<li>ordered</li>
