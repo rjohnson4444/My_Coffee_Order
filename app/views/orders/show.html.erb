@@ -7,6 +7,7 @@
 <li><%= number_to_currency(item.price) %> </li>
 <% end %>
 <li>total quantity: <%=@order.quantity %>  </li>
-<li> <%= @order.created_at %> </li>
+<li> <%= @order.created_at.strftime("%d %b. %Y") %> </li>
+
 <li><%=number_to_currency(@order.sum) %></li>
-<li>ordered</li>
+<li><%= @order.status %></li>

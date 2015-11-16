@@ -59,11 +59,10 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content?("drip0's quantity:1")
     assert page.has_content?("total quantity: 2")
     find_link('pour over0').visible?
-    #   And I should see the current status of the order (ordered, paid, cancelled, completed)
     assert page.has_content?("ordered")
 
     #   And I should see the date/time that the order was submitted
-    assert page.has_content?("#{Order.last.created_at}")
+    assert page.has_content?("#{Order.last.created_at.strftime("%d %b. %Y")}")
 
     #   If the order was completed or cancelled
     #   Then I should see a timestamp when the action took place
