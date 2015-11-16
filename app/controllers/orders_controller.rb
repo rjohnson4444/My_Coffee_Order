@@ -1,23 +1,30 @@
 class OrdersController < ApplicationController
 
   def create
-
      @order = Order.new(quantity: params[:quantity] , sum: params[:sum] )
-     if @order.save
+     if @order.save && current_user
+       current_user.orders << @order
+       @order.add_items_to_order(@cart, current_user)
        redirect_to orders_path
      else
+       flash[:login] ="Must Login"
+       redirect_to login_path
      end
   end
 
-  def show
-
+  def index
     if current_user
       @orders = current_user.orders
-      flash[:order] = "Order was succefully placed"
+       flash[:order] = "Order was succefully placed"
     else
       flash[:login] ="Must Login"
       redirect_to login_path
     end
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @order.ordered!
   end
 
 end

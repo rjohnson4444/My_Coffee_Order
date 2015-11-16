@@ -1,4 +1,4 @@
-require_relative 'cart_coffee'
+ require_relative 'cart_coffee'
 class Cart
   attr_reader :contents
   def initialize(raw_data)
@@ -29,6 +29,14 @@ class Cart
     item = Item.find(item_id)
     sum = item.price * quantity
     CartCoffee.new(item, quantity, sum)
+    end
+  end
+
+  def cart_items
+    contents.map do |item_id, quantity|
+
+     Item.find(item_id)
+
     end
   end
 end
