@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MyCoffeeOrder</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
-
-  <body>
-    <header>
-      <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper #000000 black">
-            <%= link_to root_path, class: "brand-logo" do %>
-              <i class="fa fa-coffee"> My Coffee Now</i>
-            <% end %>
-            <ul id="nav-mobile" class="right hide-on-med-and-down #40c4ff light-blue accent-2">
-              <% if current_user %>
-                <li><%= link_to "Logout", logout_path, method: :delete %></li>
-              <% else %>
-                <li><%= link_to "Login", login_path %></li>
-              <% end %>
-              <li><%= link_to "Menu", items_path %></li>
-              <li><%= link_to "Cart", cart_path %></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <div class="container">
-      <%flash.each do |type, msg| %>
-        <%=content_tag :div, msg, class: "flash_#{type}" %>
-      <% end %>
-      <%= yield %>
+<head>
+  <title>MyCoffeeOrder</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper #000000 black">
+      <%= link_to "My Coffee Now", '/', class: "brand-logo" %>
+      <ul id="nav-mobile" class="right hide-on-med-and-down #40c4ff light-blue accent-2">
+        <% if current_user %>
+          <li><%= link_to "Logout", logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
+        <li><%= link_to "Menu", items_path %></li>
+        <li><%= link_to "Cart", cart_path %></li>
+      </ul>
     </div>
-  </body>
+  </nav>
+
+<div class="container">
+  <%flash.each do |type, msg| %>
+    <%=content_tag :div, msg, class: "flash_#{type}" %>
+  <% end %>
+  <%= yield %>
+</div>
+
+</body>
 </html>
