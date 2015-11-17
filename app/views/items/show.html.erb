@@ -1,5 +1,23 @@
- <h1><%= @item.title %></h1>
+ <h1><%= @item.title.capitalize %></h1>
 
-<%= @item.description %>
+<!-- <%= @item.description %>
 <%= number_to_currency(@item.price) %>
-<%= image_tag(@item.image) %>
+<%= image_tag(@item.image) %> -->
+<div class="row">
+  <div class="col s12 m7">
+    <div class="card large hoverable">
+      <div class="card-image">
+        <%= image_tag(@item.image, class: 'responsive-img') %>
+
+        <!-- <img src="images/sample-1.jpg"> -->
+        <span class="card-title"><%= @item.title.capitalize %></span>
+      </div>
+      <div class="card-content">
+        <p><%= @item.description %></p>
+      </div>
+      <div class="card-action">
+        <%= number_to_currency(@item.price) %>
+      </div>
+    </div>
+  </div>
+</div>
