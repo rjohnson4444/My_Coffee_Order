@@ -6,7 +6,7 @@ class AdminLogsInTest < ActionDispatch::IntegrationTest
 
     ApplicationController.any_instance.stubs(:current_user).returns(admin)
 
-    assert "/admin/dashboard", current_path
-    assert page.has_content?("Admin's Dashboard")
+    assert admin_dashboard_index_path, current_path
+    assert page.has_content?("Administrator Dashboard")
   end
 end

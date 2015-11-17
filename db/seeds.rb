@@ -6,6 +6,8 @@ class Seed
   def generate
     create_category
     create_item
+    create_admin
+    create_registered_user
   end
 
   def create_category
@@ -25,6 +27,18 @@ class Seed
       @category2.items.create(title: "double espresso", description: "frothy deliciousness", price: 4.00, image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSSuvRAQORZqtyF1r2770nPSMGBoh_W8rGcArd-SowSv3kzIY5p")
 
     puts "items created."
+  end
+
+  def create_admin
+    User.create(username: "admin", password: "pw", role: 1)
+
+    puts "admin created"
+  end
+
+  def create_registered_user
+    User.create(username: "Joe", password: "secret", role: 0)
+
+    puts "registered user created"
   end
 
 end

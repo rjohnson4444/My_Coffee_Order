@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:create,:show]
   namespace :admin do
     resources :dashboard, only: [:index]
+    resources :items, only: [:index, :edit, :update]
   end
 end

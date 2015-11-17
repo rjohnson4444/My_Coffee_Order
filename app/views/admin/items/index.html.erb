@@ -1,0 +1,33 @@
+<h1 class='container'>Menu Items</h1>
+<!-- <div class="parallax-container">
+   <div class="parallax"><img src="cshop.jpg"></div> -->
+ </div>
+<body>
+</div>
+
+<table class="container">
+  <thead>
+    <tr>
+      <th data-field="name">Item Name</th>
+      <th data-field="price"> Price</th>
+      <th data-field="image">Image</th>
+      <th data-field="description">Description</th>
+      <!-- <th data-field="add to cart">Add to Cart</th> -->
+    </tr>
+  </thead>
+
+<%@items.each do |item| %>
+  <tbody>
+    <tr>
+      <div id="item<%="#{item.id}"%>">
+        <td><%= item.title %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= image_tag(item.image) %></td>
+        <td><%= item.description %></td>
+        <td><%=button_to "Edit Item", edit_admin_item_path(item), method: :get %></td>
+      </div>
+<% end %>
+
+<!-- <div id="butooon">
+  <%= button_to "View Cart", cart_path, method: :get %>
+</div> -->
