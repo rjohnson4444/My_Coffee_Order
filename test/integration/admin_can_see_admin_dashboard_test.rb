@@ -5,9 +5,9 @@ class AdminCanSeeAdminDashboardTest < ActionDispatch::IntegrationTest
     admin = make_admin
 
     ApplicationController.any_instance.stubs(:current_user).returns(admin)
-    visit '/admin/dashboard'
+    visit admin_dashboard_index_path
 
-    assert page.has_content?("Admin Dashboard")
+    assert page.has_content?("Administrator Dashboard")
   end
 
   test "registered user cannot view admin dashboard" do

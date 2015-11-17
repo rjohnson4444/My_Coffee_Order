@@ -3,18 +3,11 @@ require 'test_helper'
 class AdminViewsItemsTest < ActionDispatch::IntegrationTest
   test 'admin can view items' do
     create_category_and_items(1)
-    # As an Admin
     logged_in_admin
-    #   When I visit "/admin/dashboard"
     visit '/admin/dashboard'
     assert admin_dashboard_index_path, current_path
-    #   Then I should see a link for viewing all items
-    save_and_open_page
     click_link('View items')
-    #   And when I click that link
-    #   Then my current path should be "/admin/items"
     assert '/admin/items', current_path
-    #   Then I should see a table with all items (active and inactive)
 
     assert page.has_content?('pour over0')
     assert page.has_content?('it taste really good')
