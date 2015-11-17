@@ -1,44 +1,31 @@
-<br>
-<h1 class='container center'>Menu Items</h1>
-<br>
-
-<div class="row">
-  <div class="col s9">
-    <ul class="collection">
-      <%@items.each do |item| %>
-      <li class="collection-item avatar">
-        <%= image_tag(item.image, class: "circle") %>
-        <strong><span class="title"><%= item.title.capitalize %></span></strong>
-        <p><%= number_to_currency(item.price) %></p>
-        <%= button_to "Add to Cart", cart_items_path(id: item.id), class: "secondary-content #40c4ff light-blue accent-2 waves-effect waves-light btn" %>
-      </li>
-
-    <% end %>
-  </div>
-
-  <div class="col s3" id="butooon">
-    <%= button_to cart_path, method: :get, class: "black accent-2 waves-effect waves-light btn" do %>
-      <i class="fa fa-shopping-cart"> View Cart</i>
-    <% end %>
-  </div>
+<h1 class='container'>Menu Items</h1>
+<!-- <div class="parallax-container">
+   <div class="parallax"><img src="cshop.jpg"></div> -->
+ </div>
+<body>
 </div>
 
-<!-- <div class="container">
-  <div class="row">
-    <div class="col s6">
-    <%@items.each do |item| %>
-      <div class="card hoverable">
-        <div class="card-image">
-          <%= image_tag(item.image, class: "responsive-img") %>
-          <span class="card-title"><%= item.title %></span>
-        </div>
-        <div class="card-content">
-          <p> <%= item.description %></p>
-        </div>
-        <div class="card-action">
-          <%= button_to "Add to Cart", cart_items_path(id: item.id), class: "#40c4ff light-blue accent-2 waves-effect waves-light btn" %>
-        </div>
+<table class="container">
+  <thead>
+    <tr>
+      <th data-field="name">Item Name</th>
+      <th data-field="price"> Price</th>
+      <th data-field="image">Image</th>
+      <th data-field="add to cart">Add to Cart</th>
+    </tr>
+  </thead>
+
+<%@items.each do |item| %>
+  <tbody>
+    <tr>
+      <div id="item<%="#{item.id}"%>">
+        <td><%= item.title %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= image_tag(item.image) %></td>
+        <td><%=button_to "Add to Cart", cart_items_path(id: item.id)%></td>
       </div>
-    <% end %>
-    </div>
-  </div> -->
+<% end %>
+
+<div id="butooon">
+  <%= button_to "View Cart", cart_path, method: :get %>
+</div>
