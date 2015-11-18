@@ -53,8 +53,9 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
 
     visit items_path
 
-    assert page.has_content?("pour over0")
-    assert page.has_content?("drip0")
+    # save_and_open_page
+    assert page.has_content?("Pour over0")
+    assert page.has_content?("Drip0")
     assert page.has_content?("$4.00")
 
     click_link "Logout"

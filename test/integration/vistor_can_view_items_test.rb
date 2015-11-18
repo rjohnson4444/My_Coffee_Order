@@ -13,6 +13,6 @@ class VistorCanViewItemsTest < ActionDispatch::IntegrationTest
     visit items_path
 
     # adding within css not working
-    assert page.has_content?('latte')
+    assert page.has_content?('Latte')
   end
 end

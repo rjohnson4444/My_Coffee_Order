@@ -1,13 +1,15 @@
 <h1> <%=current_user.username%>'s Past Orders </h1>
 
-<% @order.items.each do |item| %>
-
-<li> <%= link_to "#{item.title}", item_path(item)%> </li>
-<li> <%=item.title  %>'s quantity:<%= @order.quantity_of_item(item.id) %> </li>
-<li><%= number_to_currency(item.price) %> </li>
-<% end %>
-<li>total quantity: <%=@order.quantity %>  </li>
-<li> <%= @order.created_at.strftime("%d %b. %Y") %> </li>
-
-<li><%=number_to_currency(@order.sum) %></li>
-<li><%= @order.status %></li>
+<ul class="collection with-header">
+  <li class="collection-header"><h4 id="order_id">Order #: <%= @order.id%></h4></li>
+  <% @order.items.each do |item| %>
+  <li class="collection-item"><h4 id="item-title<%= item.id %>"><%= link_to "#{item.title}", item_path(item)%></h4></li>
+  <li class="collection-item" id="item-quantity<%= item.id %>">Quantity: <%= @order.quantity_of_item(item.id) %></li>
+  <li class="collection-item" id="item-price<%= item.id %>" >Price: <%= number_to_currency(item.price) %></li>
+  <br>
+  <% end %>
+  <li class="collection-item"><strong>Total Quantity: <%=@order.quantity %></strong></li>
+  <li class="collection-item"><strong>Date of Order: <%= @order.created_at.strftime("%d %b. %Y") %></strong></li>
+  <li class="collection-item"><strong>Order Total Price: <%=number_to_currency(@order.sum) %></strong></li>
+  <li class="collection-item"><strong>Order Status: <%= @order.status %></strong></li>
+</ul>

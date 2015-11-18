@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>MyCoffeeOrder</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
   <nav>
     <div class="nav-wrapper #000000 black">
@@ -22,12 +23,13 @@
     </div>
   </nav>
 
-<div class="container">
-  <%flash.each do |type, msg| %>
-    <%=content_tag :div, msg, class: "flash_#{type}" %>
-  <% end %>
-  <%= yield %>
-</div>
 
-</body>
+  <div class="container">
+    <%flash.each do |type, msg| %>
+      <%=content_tag :div, msg, class: "flash_#{type}" %>
+    <% end %>
+    <%= yield %>
+  </div>
+
+  </body>
 </html>

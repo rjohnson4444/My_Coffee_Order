@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   def index
     if current_user
       @orders = current_user.orders
-       flash[:order] = "Order was succefully placed"
+       flash.now[:order] = "Order was succefully placed"
     else
       flash[:login] ="Must Login"
       redirect_to login_path

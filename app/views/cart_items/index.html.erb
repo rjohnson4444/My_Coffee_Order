@@ -1,37 +1,48 @@
-<h1 class="container">Items In Cart</h1>
-<table>
-  <tr>
-    <td data-field="name">Item Name</td>
-    <td data-field="description">Item Description</td>
-    <td data-field="price"> Price</td>
-    <td data-field='sub_total'>sub_total </td>
-    <td data-field='image'>Picture</td>
-    <td data-field='quantity'>Quantity</td>
-    <td data-field="adjust'">  Adjust Quantity  </td>
-    <td data-field="remove">Remove</td>
-  </tr>
+<h1 class="container center">Items In Cart</h1>
+<br>
 
-  <%@items_in_cart.each do |item| %>
-  <tr>
-    <div id="item<%= "#{item.id}"%>">
-      <td> <%= item.title %>  </td>
-      <td> <%= item.description %>  </td>
-      <td> <%= number_to_currency(item.price) %>  </td>
-      <td> <%= number_to_currency(item.sum) %> </td>
-      <td> <%= image_tag(item.image) %></td>
-      <td>  <%=item.quantity%> </td>
-      <td> <%=button_to " - ",cart_item_path(item.id), method: :put  %><%= button_to "+", cart_item_path(item.id, edit_action: 'add'), method: :put %>     </td>
-      <td><%= link_to "Remove",cart_item_path(item.id), method: :delete %></td>
-    </div>
-  </tr>
-  <% end %>
+<table class="centered">
+  <thead>
+    <tr>
+      <th data-field="name">Item Name</th>
+      <th data-field="description">Item Description</th>
+      <th data-field="price"> Price</th>
+      <th data-field='sub_total'>Sub Total</th>
+      <th data-field='image'>Picture</th>
+      <th data-field='quantity'>Quantity</th>
+      <th data-field="adjust'">  Adjust Quantity  </th>
+      <th data-field="remove">Remove</th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <%@items_in_cart.each do |item| %>
+    <tr>
+      <div id="item<%= "#{item.id}"%>">
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= number_to_currency(item.sum) %></td>
+        <td><%= image_tag(item.image, size: "90x90", class: "circle") %></td>
+        <td><%= item.quantity%> </td>
+        <td><%= button_to "+", cart_item_path(item.id, edit_action: 'add'), method: :put, class: "btn-floating btn waves-effect waves-light black" %> <%= button_to " - ",cart_item_path(item.id), method: :put, class: "btn-floating btn waves-effect waves-light black" %></td>
+        <td><%= link_to "Remove",cart_item_path(item.id), method: :delete %></td>
+      </div>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
+
 <br>
 <div id="order_total">
-Total:  <%= number_to_currency(@cart.sum) %>
-Total Quantity: <%= @cart.total_quantity %>
+  <strong>Total:  <%= number_to_currency(@cart.sum) %></strong>
 </div>
+<br>
+<div>
+  <strong>Total Quantity: <%= @cart.total_quantity %></strong>
+</div>
+<br>
 <div class="butooon2">
-   <%= button_to "Checkout", orders_path(sum: @cart.sum, quantity: @cart.total_quantity, user: current_user) %>
+   <%= button_to "Checkout", orders_path(sum: @cart.sum, quantity: @cart.total_quantity, user: current_user), class: "waves-effect waves-light btn black" %>
 </div>
+<br>
