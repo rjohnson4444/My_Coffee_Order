@@ -19,6 +19,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    if current_user.admin?
+      @admin = current_user
+    else
+      flash[:login_error] = "You must be an admin to edit"
+      redirect_to "/"
+    end
+  end
+
+  def update
+    @admin = current_user
+    if @admin.update(user_params)
+      flash[:login_update] = "You have succesfully changed your account information"
+      redirect_to admin_dashboard_index_path
+    else
+    end
+  end
 
   private
 
