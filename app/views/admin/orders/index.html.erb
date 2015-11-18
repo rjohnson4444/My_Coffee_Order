@@ -1,0 +1,17 @@
+<h1>All Orders</h1>
+
+<div class="order-info">
+  <% @orders.each do |order| %>
+    <ul class="collapsible popout" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header" id="orders">
+          <%= link_to "Order number: #{order.id}", admin_order_path(order) %>
+        </div>
+        <div class="collapsible-body">
+          <p>Order Quantity: <%= order.quantity %></p><br>
+          <p>Order Total: <%= number_to_currency(order.sum) %></p>
+        </div>
+      </li>
+    </ul>
+  <%end %>
+</div>

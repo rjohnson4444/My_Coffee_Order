@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
   def create_user
-    User.create(username: "user", password: "password")
+    User.create(username: "user", password: "password", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
   end
 
   test "unregistered user register's with a password confirmation" do
@@ -13,6 +13,11 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     fill_in "Username", with: "user"
     fill_in "Password", with: "pw"
     fill_in "Password confirmation", with: "pw"
+    fill_in "Address", with: "1111 Maple Rd"
+    fill_in "City", with: "Denver"
+    fill_in "State", with: "CO"
+    fill_in "Zip", with: 82020
+
     click_button "Create Account"
 
     assert '/dashboard', current_path
@@ -44,9 +49,15 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     assert new_user_path, current_path
     assert 0, User.all.count
 
+    # save_and_open_page
     fill_in "Username", with: "user"
-    fill_in "Password", with: "password"
-    fill_in "Password confirmation", with: "password"
+    fill_in "Password", with: "pw"
+    fill_in "Password confirmation", with: "pw"
+    fill_in "Address", with: "1111 Maple Rd"
+    fill_in "City", with: "Denver"
+    fill_in "State", with: "CO"
+    fill_in "Zip", with: 82020
+
     click_button "Create Account"
 
     assert '/dashboard', current_path

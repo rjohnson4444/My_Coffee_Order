@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   get '/cart', to: 'cart_items#index'
   get '/orders', to: 'orders#index'
   resources :orders, only: [:create,:show]
+
   namespace :admin do
     resources :dashboard, only: [:index]
     resources :items, only: [:index, :edit, :update]
+    resources :orders, only: [:index, :show]
   end
 end

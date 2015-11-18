@@ -16,11 +16,26 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def make_admin
-    User.create(username: "admin", password: "pw", role: 1)
+    User.create(username: "admin", password: "pw", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020, role: 1)
+  end
+
+  def user_makes_an_order
+    logged_in_user
+    create_category_and_items(1)
+    item1 = Item.first
+
+    visit items_path
+
+    within "#item#{item1.id}" do
+      click_button "Add to Cart"
+    end
+
+    click_button "View Cart"
+    click_button "Checkout"
   end
 
   def logged_in_admin
-    admin = User.create(username: "admin", password: "pw", role: 1)
+    admin = User.create(username: "admin", password: "pw", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020, role: 1)
     visit login_path
 
     fill_in "Username", with: "admin"
@@ -30,7 +45,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def logged_in_user
-    User.create(username: "user", password: "password")
+    User.create(username: "user", password: "password", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
     visit login_path
 
     fill_in "Username", with: "user"
@@ -51,7 +66,6 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-    User.create(username: 'ryan',
-                password: 'waffles')
+    User.create(username: "ryan", password: "waffles", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
   end
 end
