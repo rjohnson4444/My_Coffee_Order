@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Logged in as #{@user.username.capitalize}"
       redirect_to dashboard_path
     else
-      # something if the user is not valid
+      flash[:errors] = @user.errors.full_messages.join(", ")
+      render :new
     end
   end
 
@@ -22,6 +23,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end
