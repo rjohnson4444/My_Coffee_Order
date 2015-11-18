@@ -23,8 +23,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    @order.ordered!
+    if current_user
+      @order = current_user.orders.find(params[:id])
+      @order.ordered!
+    end 
   end
 
 end
