@@ -33,9 +33,14 @@
 </table>
 <br>
 <div id="order_total">
-Total:  <%= number_to_currency(@cart.sum) %>
-Total Quantity: <%= @cart.total_quantity %>
+  <strong>Total:  <%= number_to_currency(@cart.sum) %></strong>
 </div>
+<br>
+<div>
+  <strong>Total Quantity: <%= @cart.total_quantity %></strong>
+</div>
+<br>
 <div class="butooon2">
    <%= button_to "Checkout", orders_path(sum: @cart.sum, quantity: @cart.total_quantity, user: current_user), class: "waves-effect waves-light btn black" %>
 </div>
+<br>

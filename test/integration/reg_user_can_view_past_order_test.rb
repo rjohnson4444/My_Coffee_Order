@@ -3,8 +3,6 @@ require 'test_helper'
 
 class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
 
-  # Background: An existing user that has one previous order
-
   test 'a registered user can view past orders' do
 
     user = create_user
@@ -34,32 +32,48 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
 
     order1 = user.orders.last
 
-    click_link "Logout"
-    click_link "Login"
-
-    fill_in 'Username', with: 'ryan'
-    fill_in "Password", with: 'waffles'
-    click_button "Login"
-
     visit orders_path
 
     assert page.has_content?("$8.00")
 
-    click_link "Order number:#{order1.id}"
+    click_link "Order number: #{order1.id}"
 
     assert order_path(order1), current_path
 
-    assert page.has_content?('pour over0')
-    assert page.has_content?('drip0')
-    assert page.has_content?("$4.00")
-    assert page.has_content?('$4.00')
-    assert page.has_content?('$8.00')
+    within "#order_id" do
+      assert page.has_content?(order1.id)
+    end
 
-    assert page.has_content?("pour over0's quantity:1")
-    assert page.has_content?("drip0's quantity:1")
-    assert page.has_content?("total quantity: 2")
+    within "#item-title#{item1.id}" do
+      assert page.has_content?("pour over0")
+    end
+
+    within "#item-quantity#{item1.id}" do
+      assert page.has_content?("Quantity: 1")
+    end
+
+    within "#item-price#{item1.id}" do
+      assert page.has_content?("Price: $4.00")
+    end
+
+    within "#item-title#{item2.id}" do
+      assert page.has_content?("drip0")
+    end
+
+    within "#item-quantity#{item2.id}" do
+      assert page.has_content?("Quantity: 1")
+    end
+
+    within "#item-price#{item2.id}" do
+      assert page.has_content?("Price: $4.00")
+    end
+
+    assert page.has_content?('$8.00')
+    assert page.has_content?("Total Quantity: 2")
     find_link('pour over0').visible?
     assert page.has_content?("ordered")
+
+
 
     #   And I should see the date/time that the order was submitted
     assert page.has_content?("#{Order.last.created_at.strftime("%d %b. %Y")}")

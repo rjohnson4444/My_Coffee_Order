@@ -1,16 +1,17 @@
 <br>
-<h1 class='container center'>Menu Items</h1>
+<h1 class='container'>Menu Items</h1>
 <br>
 
 <div class="row">
   <div class="col s9">
     <ul class="collection">
       <%@items.each do |item| %>
-      <li class="collection-item avatar">
+      <li class="collection-item avatar" id="item<%= item.id %>">
         <%= image_tag(item.image, class: "circle") %>
         <strong><span class="title"><%= item.title.capitalize %></span></strong>
         <p><%= number_to_currency(item.price) %></p>
         <%= button_to "Add to Cart", cart_items_path(id: item.id), class: "secondary-content #40c4ff light-blue accent-2 waves-effect waves-light btn" %>
+        <%=  %>
       </li>
 
     <% end %>
@@ -22,23 +23,3 @@
     <% end %>
   </div>
 </div>
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col s6">
-    <%@items.each do |item| %>
-      <div class="card hoverable">
-        <div class="card-image">
-          <%= image_tag(item.image, class: "responsive-img") %>
-          <span class="card-title"><%= item.title %></span>
-        </div>
-        <div class="card-content">
-          <p> <%= item.description %></p>
-        </div>
-        <div class="card-action">
-          <%= button_to "Add to Cart", cart_items_path(id: item.id), class: "#40c4ff light-blue accent-2 waves-effect waves-light btn" %>
-        </div>
-      </div>
-    <% end %>
-    </div>
-  </div> -->
