@@ -23,12 +23,13 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
       click_link "Order number: #{order.id}"
     end
 
-    assert admin_order_path(order), current_path
 
-    assert page.has_content?("Order Date: #{date}")
+    assert order_path(order), current_path
+
+    assert page.has_content?("Date of Order: #{order.created_at.strftime("%d %b. %Y")}")
 
     assert page.has_content?("Purchaser's Name: #{order.user.username.capitalize}")
-
+    
     within "#user-address" do
       assert page.has_content?("Purchaser's Address: #{order.user.address}")
       assert page.has_content?("#{order.user.city}")
