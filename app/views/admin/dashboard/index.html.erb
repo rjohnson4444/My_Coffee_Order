@@ -11,11 +11,10 @@
 
 <div id ="status">
 
-<li>Ordered: <%= Order.where(status: 0).count(:status) %> </li>
-<li>Paid:  <%= Order.where(status: 1).count(:status) %> </li>
-<li>Cancelled:  <%= Order.where(status: 2).count(:status) %> </li>
-<li>Completed:  <%= Order.where(status: 3).count(:status) %> </li>
-
+<li> <%= link_to "Ordered:",   admin_order_path(0, status: 0)%> <%= Order.where(status: 0).count(:status) %> </li>
+<li> <%= link_to "Paid:",      admin_order_path(0, status: 1)%>  <%= Order.where(status: 1).count(:status) %> </li>
+<li> <%= link_to "Cancelled:", admin_order_path(0, status: 2)%> <%= Order.where(status: 2).count(:status) %> </li>
+<li> <%= link_to "Completed:", admin_order_path(0, status: 3)%> <%= Order.where(status: 3).count(:status) %> </li>
 </div>
 
 

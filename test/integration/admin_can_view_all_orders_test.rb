@@ -38,8 +38,6 @@ class AdminCanViewAllOrdersTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Completed: #{Order.where(status: 0).count(:status)} ")
     end
 
-    click_on("Status")
-
   end
 
     #   And I can filter orders to display by each status type  ("Ordered", "Paid", "Cancelled", "Completed")

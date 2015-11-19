@@ -5,7 +5,7 @@
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
         <div class="collapsible-header" id="orders">
-          <%= link_to "Order number: #{order.id}", admin_order_path(order) %>
+          <%= link_to "Order number: #{order.id}", order_path(order) %>
         </div>
         <div class="collapsible-body">
           <p>Order Quantity: <%= order.quantity %></p><br>
