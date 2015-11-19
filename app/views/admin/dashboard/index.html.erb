@@ -9,11 +9,22 @@
   </tr>
 </table>
 
+<div id ="status">
+
+<li>Ordered: <%= Order.where(status: 0).count(:status) %> </li>
+<li>Paid:  <%= Order.where(status: 1).count(:status) %> </li>
+<li>Cancelled:  <%= Order.where(status: 2).count(:status) %> </li>
+<li>Completed:  <%= Order.where(status: 3).count(:status) %> </li>
+
+</div>
+
+
 <div class="order-info">
   <% @orders.each do |order| %>
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header">
+        <div class="collapsible-header<%= order.id %>">
+
           <%= link_to "Order number: #{order.id}", order_path(order) %>
         </div>
         <div class="collapsible-body">

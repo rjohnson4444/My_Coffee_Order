@@ -28,6 +28,9 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 gem 'materialize-sass'
 
+gem 'jquery-tablesorter'
+
+
 gem 'figaro'
 
 gem 'twilio-ruby', '~> 3.12'

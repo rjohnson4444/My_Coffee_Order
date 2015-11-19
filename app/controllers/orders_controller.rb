@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
      if @order.save && current_user
        current_user.orders << @order
        @order.add_items_to_order(@cart, current_user)
-       SendMessage.text
+       @order.ordered!
+
+      #  SendMessage.text
        redirect_to orders_path
      else
        flash[:login] ="Must Login"
@@ -28,7 +30,6 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
     elsif current_user
       @order = current_user.orders.find(params[:id])
-      @order.ordered!
     end
   end
 end
