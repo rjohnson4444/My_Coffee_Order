@@ -25,7 +25,10 @@
         <td><%= number_to_currency(item.sum) %></td>
         <td><%= image_tag(item.image, size: "90x90", class: "circle") %></td>
         <td><%= item.quantity%> </td>
-        <td><%= button_to "+", cart_item_path(item.id, edit_action: 'add'), method: :put, class: "btn-floating btn waves-effect waves-light black" %> <%= button_to " - ",cart_item_path(item.id), method: :put, class: "btn-floating btn waves-effect waves-light black" %></td>
+        <td>
+          <%= button_to "+", cart_item_path(item.id, edit_action: 'add'), method: :put, class: "btn-floating btn waves-effect waves-light black" %> 
+          <%= button_to " - ",cart_item_path(item.id), method: :put, class: "btn-floating btn waves-effect waves-light black" %>
+        </td>
         <td><%= link_to "Remove",cart_item_path(item.id), method: :delete %></td>
       </div>
     </tr>
