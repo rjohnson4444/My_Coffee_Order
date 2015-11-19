@@ -39,15 +39,8 @@ class AdminCreatesItemTest < ActionDispatch::IntegrationTest
     fill_in('Image URL', with: 'www.google.com')
     fill_in('Category ID', with: '')
     find_button('Create Item').click
-    #         - An item must have a title, description and price.
 
     assert page.has_content?("Missing fields")
-    #         - An item must belong to at least one category.
-
-    #         - The title and description cannot be empty.
-    #         - The title must be unique for all items in the system.
-    #         - The price must be a valid decimal numeric value and greater than zero.
-    #         - The photo is optional. If not present, a stand-in photo is used.
 
   end
 end

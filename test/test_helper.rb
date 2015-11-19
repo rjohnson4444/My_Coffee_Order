@@ -87,4 +87,61 @@ class ActionDispatch::IntegrationTest
   def create_user
     User.create(username: "ryan", password: "waffles", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
   end
+
+  def add_2
+    visit items_path
+    item1 = Item.find_by(title: "pour over0")
+    item2 = Item.find_by(title: "drip0")
+
+    within "#item#{item1.id}" do
+      click_button "Add to Cart"
+    end
+
+    within "#item#{item2.id}" do
+      click_button "Add to Cart"
+    end
+
+    click_button "View Cart"
+    click_button "Checkout"
+    fill_in 'Username', with: 'ryan'
+    fill_in "Password", with: 'waffles'
+    click_button "Login"
+
+    assert '/dashboard', current_path
+
+    click_link "Cart"
+    click_button "Checkout"
+  end
+
+  def user_registration
+    visit root_path
+
+    click_link "Create Account"
+
+    fill_in "Username", with: "user"
+    fill_in "Password", with: "pw"
+    fill_in "Password confirmation", with: "pw"
+    fill_in "Address", with: "1111 Maple Rd"
+    fill_in "City", with: "Denver"
+    fill_in "State", with: "CO"
+    fill_in "Zip", with: 82020
+
+    click_button "Create Account"
+  end
+
+  def visitor_adds_to_cart
+    create_category_and_items(1)
+    item1 = Item.first
+
+    visit items_path
+
+    within "#item#{item1.id}" do
+      click_button "Add to Cart"
+    end
+
+    click_button "View Cart"
+    click_button "Checkout"
+  end
+
+
 end

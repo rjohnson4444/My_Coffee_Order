@@ -1,24 +1,10 @@
 require 'test_helper'
 
 class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
-  def create_user
-    User.create(username: "user", password: "password", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
-  end
 
   test "unregistered user register's with a password confirmation" do
-    visit root_path
 
-    click_link "Create Account"
-
-    fill_in "Username", with: "user"
-    fill_in "Password", with: "pw"
-    fill_in "Password confirmation", with: "pw"
-    fill_in "Address", with: "1111 Maple Rd"
-    fill_in "City", with: "Denver"
-    fill_in "State", with: "CO"
-    fill_in "Zip", with: 82020
-
-    click_button "Create Account"
+    user_registration
 
     assert '/dashboard', current_path
     assert page.has_content?("User's Dashboard")
@@ -42,23 +28,11 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test "unregistered user can register" do
-    visit root_path
 
-    click_link "Create Account"
+    user_registration
 
     assert new_user_path, current_path
     assert 0, User.all.count
-
-    # save_and_open_page
-    fill_in "Username", with: "user"
-    fill_in "Password", with: "pw"
-    fill_in "Password confirmation", with: "pw"
-    fill_in "Address", with: "1111 Maple Rd"
-    fill_in "City", with: "Denver"
-    fill_in "State", with: "CO"
-    fill_in "Zip", with: 82020
-
-    click_button "Create Account"
 
     assert '/dashboard', current_path
 
@@ -68,19 +42,8 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test "unregistered user can login" do
-    create_user
-    user = User.find_by(username: 'user')
-    visit root_path
 
-    assert page.has_link?("Login")
-    click_link "Login"
-
-    assert '/login', current_path
-
-    fill_in "Username", with: "user"
-    fill_in "Password", with: "password"
-
-    click_button "Login"
+    user = logged_in_user
 
     assert dashboard_path, current_path
     assert page.has_content?("user has logged in
