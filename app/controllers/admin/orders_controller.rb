@@ -4,6 +4,6 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def show
-    @orders = Order.where(status: params[:status].to_i)
+    @order = Order.find(params[:id])
   end
 end

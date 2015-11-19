@@ -15,21 +15,11 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
 
     ApplicationController.any_instance.stubs(:current_user).returns(admin)
 
-    visit admin_orders_path
+    visit admin_order_path(order)
 
-    assert page.has_content?("All Orders")
-
-    within "#orders" do
-      click_link "Order number: #{order.id}"
-    end
-
-
-    assert order_path(order), current_path
-
-    assert page.has_content?("Date of Order: #{order.created_at.strftime("%d %b. %Y")}")
-
+    assert page.has_content?("Date of Order: #{order.created_at.strftime("%b. %d %Y")}")
     assert page.has_content?("Purchaser's Name: #{order.user.username.capitalize}")
-    
+
     within "#user-address" do
       assert page.has_content?("Purchaser's Address: #{order.user.address}")
       assert page.has_content?("#{order.user.city}")
@@ -56,5 +46,6 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Order Total Price: $4.00")
 
     assert page.has_content?("Order Status: ordered")
+    save_and_open_page
   end
 end
