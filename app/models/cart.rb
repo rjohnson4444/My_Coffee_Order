@@ -36,9 +36,7 @@ class Cart
 
   def cart_items
     contents.map do |item_id, quantity|
-
      Item.find(item_id)
-
     end
   end
 end

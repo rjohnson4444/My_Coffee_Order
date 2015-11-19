@@ -4,10 +4,10 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
 
 
   test "admin can visit an individual order page" do
-    skip
     admin = logged_in_admin
-    user_makes_an_order
-    order = Order.last
+    user = user_makes_an_order
+    user.orders.last.ordered!
+    order = user.orders.last
     item = order.items.first
     item_quantity = order.order_items.first.quantity
     item_subtotal = order.order_items.first.quantity * item.price
@@ -30,28 +30,30 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Purchaser's Name: #{order.user.username.capitalize}")
 
     within "#user-address" do
-      assert page.has_content?("Purchaser Address: #{order.user.address}")
+      assert page.has_content?("Purchaser's Address: #{order.user.address}")
       assert page.has_content?("#{order.user.city}")
       assert page.has_content?("#{order.user.state}")
-      assert page.has_content?("#{order.user.zipcode}")
+      assert page.has_content?("#{order.user.zip}")
     end
 
-    within "#order-item#{item.id}" do
+    within "#order-item#{item.id}-title" do
       assert page.has_content?("#{item.title.capitalize}")
-      assert page.has_content?("Quantity: #{item_quantity}")
-      assert page.has_content?("Price: #{item.price}")
-      assert page.has_content?("Subtotal: #{item_subtotal}")
     end
 
-    assert page.has_content?("$4.00")
-    assert page.has_content?("ordered")
+    within "#order-item#{item.id}-quantity" do
+      assert page.has_content?("Quantity: #{item_quantity}")
+    end
 
-    # And I can see, for each item on the order:
-    #   - The item's name, which is linked to the item page.
-    #   - Quantity in this order.
-    #   - Price
-    #   - Line item subtotal.
-    # And I can see the total for the order.
-    # And I can see the status for the order.
+    within "#order-item#{item.id}-price" do
+      assert page.has_content?("Price: $#{item.price}.00")
+    end
+
+    within "#order-item#{item.id}-subtotal" do
+      assert page.has_content?("Subtotal: $#{item_subtotal}.00")
+    end
+
+    assert page.has_content?("Order Total Price: $4.00")
+
+    assert page.has_content?("Order Status: ordered")
   end
 end

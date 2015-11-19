@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     if current_user
       @order = current_user.orders.find(params[:id])
       @order.ordered!
-    end 
+    end
   end
-
 end
