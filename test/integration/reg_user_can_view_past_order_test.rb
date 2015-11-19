@@ -7,28 +7,10 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
 
     user = create_user
     create_category_and_items(1)
+    add_2
+
     item1 = Item.find_by(title: "pour over0")
     item2 = Item.find_by(title: "drip0")
-
-    visit items_path
-    within "#item#{item1.id}" do
-      click_button "Add to Cart"
-    end
-
-    within "#item#{item2.id}" do
-      click_button "Add to Cart"
-    end
-
-    click_button "View Cart"
-    click_button "Checkout"
-    fill_in 'Username', with: 'ryan'
-    fill_in "Password", with: 'waffles'
-    click_button "Login"
-
-    assert '/dashboard', current_path
-
-    click_link "Cart"
-    click_button "Checkout"
 
     order1 = user.orders.last
 
@@ -73,15 +55,6 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
     find_link('pour over0').visible?
     assert page.has_content?("ordered")
 
-
-
-    #   And I should see the date/time that the order was submitted
     assert page.has_content?("#{Order.last.created_at.strftime("%d %b. %Y")}")
-
-    #   If the order was completed or cancelled
-    #   Then I should see a timestamp when the action took place
-    #   And if any of the items in the order were retired from the menu
-    #   Then they should still be able to access the item page
-    #   But they should not be able to add the item to their cart
     end
 end

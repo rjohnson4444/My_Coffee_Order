@@ -18,7 +18,7 @@ class AdminCanViewAllOrdersTest < ActionDispatch::IntegrationTest
     click_button "View Cart"
     click_button "Checkout"
     click_link "Logout"
-    binding.pry
+
     user_makes_an_order
     logged_in_admin
     visit admin_dashboard_index_path
