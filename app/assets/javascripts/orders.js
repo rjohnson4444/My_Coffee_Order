@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    $('.collapsible').collapsible({
-      accordion : false 
-    });
-  });
+  $('.slider').slider({ indicators: false });
+  $('.collapsible').collapsible({ accordion : false });
+});
