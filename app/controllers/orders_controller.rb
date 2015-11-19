@@ -29,5 +29,4 @@ class OrdersController < ApplicationController
       @order.ordered!
     end
   end
-
 end

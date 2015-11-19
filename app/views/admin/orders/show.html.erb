@@ -1,0 +1,20 @@
+<h1>Order #: <%= @order.id %></h1>
+
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Order Date: <%= @order.created_at.strftime("%b. %d %Y") %></h4></li>
+  <li class="collection-item"><h4>Purchaser's Name: <%= @order.user.username.capitalize %></h4></li>
+  <li class="collection-item" id="user-address">
+    <p>Purchaser's Address: <%= @order.user.address %>, <%= @order.user.city %>, <%= @order.user.state %>, <%= @order.user.zip %> </p>
+  </li>
+  <% @order.items.each do |item| %>
+    <li class="collection-item" id="order-item<%= item.id %>-title"><%= item.title.capitalize %></li>
+    <li class="collection-item" id="order-item<%= item.id %>-quantity">Quantity: <%= @order.quantity_of_item(item.id) %></li>
+    <li class="collection-item" id="order-item<%= item.id %>-price">Price: <%= number_to_currency(item.price) %></li>
+    <li class="collection-item" id="order-item<%= item.id %>-subtotal">Subtotal: <%= number_to_currency(@order.subtotal_of_item(item.id)) %></li>
+    <br>
+  <% end %>
+  <li class="collection-item"><strong>Total Quantity: <%=@order.quantity %></strong></li>
+  <li class="collection-item"><strong>Date of Order: <%= @order.created_at.strftime("%d %b. %Y") %></strong></li>
+  <li class="collection-item"><strong>Order Total Price: <%=number_to_currency(@order.sum) %></strong></li>  
+  <li class="collection-item"><strong>Order Status: <%= @order.status %></strong></li>
+</ul>

@@ -4,7 +4,7 @@ class VistorCanViewItemsTest < ActionDispatch::IntegrationTest
 
   def create_items(num)
     num.times do
-    Item.create(title: "latte", description: 'forthy deliciousness', price: 4.00, image: "google.com")
+      Item.create(title: "latte", description: 'forthy deliciousness', price: 4.00, image: "google.com")
     end
   end
 

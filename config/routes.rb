@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   resources :orders, only: [:create,:show]
   post 'twilio/voice' => 'twilio#voice'
   post 'notifications/notify' => 'notifications#notify'
+
   namespace :admin do
     resources :dashboard, only: [:index]
     resources :items, only: [:index, :edit, :update]
+    resources :orders, only: [:index, :show]
   end
 end

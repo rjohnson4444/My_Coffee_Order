@@ -16,11 +16,44 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def make_admin
-    User.create(username: "admin", password: "pw", role: 1)
+    User.create(username: "admin", password: "pw", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020, role: 1)
+  end
+
+  def user_makes_an_order
+    user = logged_in_user
+    create_category_and_items(1)
+    item1 = Item.first
+
+    visit items_path
+
+    within "#item#{item1.id}" do
+      click_button "Add to Cart"
+    end
+
+    click_button "View Cart"
+    click_button "Checkout"
+    user
+  end
+
+  def admin_makes_an_order
+    admin = logged_in_admin
+    create_category_and_items(1)
+    item1 = Item.first
+
+    visit items_path
+
+    within "#item#{item1.id}" do
+      click_button "Add to Cart"
+    end
+
+    click_button "View Cart"
+
+    click_button "Checkout"
+    admin
   end
 
   def logged_in_admin
-    admin = User.create(username: "admin", password: "pw", role: 1)
+    admin = User.create(username: "admin", password: "pw", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020, role: 1)
     visit login_path
 
     fill_in "Username", with: "admin"
@@ -30,12 +63,13 @@ class ActionDispatch::IntegrationTest
   end
 
   def logged_in_user
-    User.create(username: "user", password: "password")
+    user = User.create(username: "user", password: "password", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
     visit login_path
 
     fill_in "Username", with: "user"
     fill_in "Password", with: "password"
     click_button "Login"
+    user
   end
 
   def create_category_and_items(num)
@@ -51,7 +85,6 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_user
-    User.create(username: 'ryan',
-                password: 'waffles')
+    User.create(username: "ryan", password: "waffles", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
   end
 end

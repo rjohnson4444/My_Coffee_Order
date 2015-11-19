@@ -18,7 +18,7 @@ class AdminCanModifyItsAccountTest < ActionDispatch::IntegrationTest
    end
 
    test "registered user cannot edit user info" do
-     user = User.create(username: "user", password: "password")
+     user = User.create(username: "user", password: "password", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
      visit '/login'
      fill_in "Username", with: "user"
      fill_in "Password", with: "password"

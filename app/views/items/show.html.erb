@@ -1,5 +1,18 @@
- <h1><%= @item.title %></h1>
-
-<%= @item.description %>
-<%= number_to_currency(@item.price) %>
-<%= image_tag(@item.image) %>
+<div class="row">
+  <div class="col s12 offset-s6 m7">
+    <div class="card hoverable">
+      <div class="card-image">
+        <%= image_tag(@item.image) %>
+        <!-- <img src="images/sample-1.jpg"> -->
+        <span class="card-title"><%= @item.title.capitalize %></span>
+      </div>
+      <div class="card-content">
+        <p><%= @item.description %></p>
+        <p><%= number_to_currency(@item.price) %></p>
+      </div>
+      <div class="card-action">
+        <%= link_to "Back to Order"  %>
+      </div>
+    </div>
+  </div>
+</div>
