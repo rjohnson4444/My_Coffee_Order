@@ -4,10 +4,6 @@ class Order < ActiveRecord::Base
   has_many :items, through: :order_items
   enum status: [ :ordered, :paid, :cancelled, :completed ]
 
-  def find_subtotal(item_id, quantity)
-    Item.find(item_id).price * quantity
-  end
-
   def add_items_to_order(cart, current_user)
     cart.contents.each do |item_id, quantity|
       subtotal = find_subtotal(item_id, quantity)
@@ -22,5 +18,11 @@ class Order < ActiveRecord::Base
  def subtotal_of_item(item_id)
    self.order_items.find_by(item_id: item_id).subtotal
  end
+
+ private
+
+  def find_subtotal(item_id, quantity)
+    Item.find(item_id).price * quantity
+  end
 
 end

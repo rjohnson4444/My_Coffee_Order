@@ -14,6 +14,10 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+  
+  def create_user
+    User.create(username: "ryan", password: "waffles", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
+  end
 
   def make_admin
     User.create(username: "admin", password: "pw", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020, role: 1)
@@ -82,9 +86,5 @@ class ActionDispatch::IntegrationTest
 
   def teardown
     reset_session!
-  end
-
-  def create_user
-    User.create(username: "ryan", password: "waffles", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
   end
 end
