@@ -10,7 +10,8 @@ class AdminCanModifyItsAccountTest < ActionDispatch::IntegrationTest
    fill_in "Username", with: "Jhun"
    fill_in "Password", with: "dana"
 
-   click_button "submit"
+   click_button "Edit Account"
+
    assert page.has_content?("You have succesfully changed your account information")
 
 

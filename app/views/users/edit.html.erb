@@ -1,7 +1,3 @@
-<%= form_for(@admin) do |f| %>
-<%=f.label :username %>
-<%=f.text_field :username %>
-<%=f.label :password %>
-<%=f.text_field :password %>
-<%= f.submit "submit" %>
-<% end %>
+<h1>Edit</h1>
+
+<%= render partial: 'form' %>
