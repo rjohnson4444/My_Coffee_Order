@@ -10,11 +10,6 @@ class AdminCanModifyItsAccountTest < ActionDispatch::IntegrationTest
    fill_in "Username", with: "Jhun"
    fill_in "Password", with: "dana"
 
-   click_button "Edit Account"
-
-   assert page.has_content?("You have succesfully changed your account information")
-
-
    assert admin_dashboard_index_path , current_path
    end
 

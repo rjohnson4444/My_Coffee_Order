@@ -34,7 +34,7 @@ class AdminCanViewAllOrdersTest < ActionDispatch::IntegrationTest
     Order.last.paid!
 
 
-    within("#status") do
+    within(".collection") do
       assert page.has_content?("Completed: #{Order.where(status: 0).count(:status)} ")
     end
 
