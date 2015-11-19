@@ -10,17 +10,5 @@ class Category < ActiveRecord::Base
   def set_slug
     self.slug = name.parameterize
   end
-  # #first way
-  # def to_param
-  #   "#{id} #{name}".parameterize
-  # end
-  #
-  # # second way
-  # extend FriendlyId
-  # friendly_id :name
-  #
-  # # third way
-  # extend FriendlyId
-  # friendly_id :name, use: :slugged
 
 end
