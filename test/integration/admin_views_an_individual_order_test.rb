@@ -28,7 +28,7 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
     end
 
     within "#order-item#{item.id}-title" do
-      assert page.has_content?("#{item.title.capitalize}")
+      assert page.has_link?("#{item.title.capitalize}")
     end
 
     within "#order-item#{item.id}-quantity" do
@@ -46,6 +46,5 @@ class AdminViewsAnIndividualOrderTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Order Total Price: $4.00")
 
     assert page.has_content?("Order Status: ordered")
-    save_and_open_page
   end
 end

@@ -10,11 +10,10 @@
 </table>
 
 <div id ="status">
-
-<li> <%= link_to "Ordered:",   admin_order_path(0, status: 0)%> <%= Order.where(status: 0).count(:status) %> </li>
-<li> <%= link_to "Paid:",      admin_order_path(0, status: 1)%>  <%= Order.where(status: 1).count(:status) %> </li>
-<li> <%= link_to "Cancelled:", admin_order_path(0, status: 2)%> <%= Order.where(status: 2).count(:status) %> </li>
-<li> <%= link_to "Completed:", admin_order_path(0, status: 3)%> <%= Order.where(status: 3).count(:status) %> </li>
+  <li> <%= link_to "Ordered:",   admin_order_path(0, status: 0)%> <%= Order.where(status: 0).count(:status) %> </li>
+  <li> <%= link_to "Paid:",      admin_order_path(0, status: 1)%>  <%= Order.where(status: 1).count(:status) %> </li>
+  <li> <%= link_to "Cancelled:", admin_order_path(0, status: 2)%> <%= Order.where(status: 2).count(:status) %> </li>
+  <li> <%= link_to "Completed:", admin_order_path(0, status: 3)%> <%= Order.where(status: 3).count(:status) %> </li>
 </div>
 
 
@@ -23,8 +22,7 @@
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
         <div class="collapsible-header<%= order.id %>">
-
-          <%= link_to "Order number: #{order.id}", order_path(order) %>
+          <%= link_to "Order number: #{order.id}", admin_order_path(order) %>
         </div>
         <div class="collapsible-body">
           <p>Order Quantity: <%= order.quantity %></p><br>
