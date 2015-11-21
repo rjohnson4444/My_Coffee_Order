@@ -6,8 +6,8 @@ class OrdersController < ApplicationController
        current_user.orders << @order
        @order.add_items_to_order(@cart, current_user)
        @order.ordered!
-       
-      SendMessage.text
+
+      # SendMessage.text
        redirect_to orders_path
      else
        flash[:login] ="Must Login"
