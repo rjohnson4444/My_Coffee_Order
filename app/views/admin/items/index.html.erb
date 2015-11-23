@@ -1,33 +1,18 @@
-<h1 class='container'>Menu Items</h1>
-<!-- <div class="parallax-container">
-   <div class="parallax"><img src="cshop.jpg"></div> -->
- </div>
-<body>
+<br>
+<h1 class='container'>Admin Menu Items</h1>
+<br>
+
+<div class="row">
+  <div class="col s9">
+    <ul class="collection">
+      <%@items.each do |item| %>
+      <li class="collection-item avatar" id="item<%= item.id %>">
+        <%= image_tag(item.image, class: "circle") %>
+        <strong><span class="title"><%=link_to item.title.capitalize, item_path(item) %></span></strong>
+        <p><%= number_to_currency(item.price) %></p>
+        <span class="secondary-content"><%= button_to "Edit", edit_admin_item_path(item), method: :get, class: "waves-effect waves-light btn black" %></span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-
-<table class="container">
-  <thead>
-    <tr>
-      <th data-field="name">Item Name</th>
-      <th data-field="price"> Price</th>
-      <th data-field="image">Image</th>
-      <th data-field="description">Description</th>
-      <!-- <th data-field="add to cart">Add to Cart</th> -->
-    </tr>
-  </thead>
-
-<%@items.each do |item| %>
-  <tbody>
-    <tr>
-      <div id="item<%="#{item.id}"%>">
-        <td><%= item.title %></td>
-        <td><%= number_to_currency(item.price) %></td>
-        <td><%= image_tag(item.image) %></td>
-        <td><%= item.description %></td>
-        <td><%=button_to "Edit Item", edit_admin_item_path(item), method: :get %></td>
-      </div>
-<% end %>
-
-<!-- <div id="butooon">
-  <%= button_to "View Cart", cart_path, method: :get %>
-</div> -->
