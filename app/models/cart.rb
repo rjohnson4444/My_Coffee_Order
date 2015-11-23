@@ -1,6 +1,6 @@
  require_relative 'cart_coffee'
 class Cart
-  attr_reader :contents
+  attr_accessor :contents
 
   def initialize(raw_data)
     @contents = raw_data || {}

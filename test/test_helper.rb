@@ -116,7 +116,9 @@ class ActionDispatch::IntegrationTest
   def user_registration
     visit root_path
 
-    click_link "Sign Up"
+    within "#sign-up" do
+      click_link "Sign Up"
+    end
 
     fill_in "Username", with: "user"
     fill_in "Password", with: "pw"
