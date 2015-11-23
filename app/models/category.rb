@@ -11,4 +11,7 @@ class Category < ActiveRecord::Base
     self.slug = name.parameterize
   end
 
+  def self.get_categories
+    self.all.map { |category| [category.name, category.id] }
+  end
 end

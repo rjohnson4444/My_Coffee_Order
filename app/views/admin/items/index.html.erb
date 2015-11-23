@@ -11,7 +11,7 @@
         <strong><span class="title"><%=link_to item.title, item_path(item) %></span></strong>
         <p><%= number_to_currency(item.price) %></p>
         <p><%= item.description %></p>
-        <span class="secondary-content"><%= button_to "Edit", edit_admin_item_path(item), method: :get, class: "waves-effect waves-light btn black" %></span>
+        <span class="secondary-content"><%= button_to "Edit", edit_admin_item_path(item), method: :get %></span>
       </li>
       <% end %>
     </ul>

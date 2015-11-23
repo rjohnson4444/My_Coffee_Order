@@ -1,15 +1,25 @@
 <h1>Create an Item</h1>
 
-<%= form_for @items, url: admin_items_path do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title %>
-<%= f.label :description %>
-<%= f.text_field :description %>
-<%= f.label :price %>
-<%= f.text_field :price %>
-<%= f.label :image, 'Image URL'%>
-<%= f.text_field :image %>
-<%= f.label :category_id, 'Category ID' %>
-<%= f.text_field :category_id %>
-<%= f.submit %>
-<% end %>
+<div class="row">
+  <div class="col s12 m7">
+    <div class="card">
+      <div class="card-content">
+        <p>
+          <%= form_for @items, url: admin_items_path do |f| %>
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+            <%= f.label :description %>
+            <%= f.text_field :description %>
+            <%= f.label :price %>
+            <%= f.text_field :price %>
+            <%= f.label :image, 'Image URL'%>
+            <%= f.text_field :image %>
+            <%= f.label :category_id, 'Category ID' %>
+            <%= f.text_field :category_id %>
+            <%= f.submit %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

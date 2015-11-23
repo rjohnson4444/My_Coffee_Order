@@ -6,13 +6,21 @@
 
   <div class="row">
     <div class="col s4">
-      <%= link_to 'View items', admin_items_path, class: "waves-effect waves-light btn" %>
+      <%= link_to 'View items', admin_items_path, class: "waves-effect waves-light btn #3e2723 brown darken-4" %>
     </div>
     <div class="col s4">
-      <%= link_to "Edit Account", edit_user_path(@admin), class: "waves-effect waves-light btn" %>
+      <%= link_to "Edit Account", edit_user_path(@admin), class: "waves-effect waves-light btn #3e2723 brown darken-4" %>
     </div>
     <div class="col s4">
-      <%= link_to "Add New Items", new_admin_item_path, class: "waves-effect waves-light btn" %>
+      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown1'>Add New Items</a>
+
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">one</a></li>
+        <li><a href="#!">two</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">three</a></li>
+      </ul>
+      <!-- <%= link_to "Add New Items", new_admin_item_path, class: "waves-effect waves-light btn" %> -->
     </div>
   </div>
 
