@@ -1,16 +1,16 @@
 class Admin::ItemsController < Admin::BaseController
 
   def new
-    @items = Item.new
+    @item = Category.find(params[:category_id]).items.new
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Category.find(params[:item][:category_id]).items.new(item_params)
     if @item.save
       redirect_to admin_items_path
     else
       flash[:errors] = "Missing fields. Please try again."
-      redirect_to new_admin_item_path 
+      redirect_to new_admin_item_path
     end
   end
 

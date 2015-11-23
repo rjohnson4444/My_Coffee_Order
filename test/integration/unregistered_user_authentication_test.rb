@@ -13,10 +13,7 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
 
   test "unregistered user cannot register with different password and password confirmation" do
     visit root_path
-
-    within "#sign-up" do
-      click_link "Sign Up"
-    end
+    click_link "Sign Up"
 
     assert 0, User.all.count
 

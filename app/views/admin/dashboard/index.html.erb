@@ -12,15 +12,15 @@
       <%= link_to "Edit Account", edit_user_path(@admin), class: "waves-effect waves-light btn #3e2723 brown darken-4" %>
     </div>
     <div class="col s4">
-      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown1'>Add New Items</a>
+      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown1'>Add New Item</a>
 
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
+        <li><p class="center">categories</p></li>
         <li class="divider"></li>
-        <li><a href="#!">three</a></li>
+        <% @categories.each do |category| %>
+        <li id="item-create-<%= category.id %>"><%= link_to "#{category.name}", new_admin_item_path(category_id: category.id) %></li>
+        <% end %>
       </ul>
-      <!-- <%= link_to "Add New Items", new_admin_item_path, class: "waves-effect waves-light btn" %> -->
     </div>
   </div>
 
