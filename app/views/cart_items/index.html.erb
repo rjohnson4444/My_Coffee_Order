@@ -46,6 +46,6 @@
   </div>
   <br>
   <div class="butooon2">
-    <%= button_to "Checkout", orders_path(sum: @cart.sum, quantity: @cart.total_quantity, user: current_user) %>
+    <%= button_to "Checkout", orders_path(sum: @cart.sum, quantity: @cart.total_quantity, user: current_user), method: :post %>
   </div>
   <br>

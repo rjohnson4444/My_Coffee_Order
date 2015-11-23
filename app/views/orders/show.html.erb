@@ -11,13 +11,13 @@
       <br>
       <% end %>
       <li class="collection-item"><strong>Total Quantity: <%=@order.quantity %></strong></li>
-      <li class="collection-item"><strong>Date of Order: <%= @order.created_at.strftime("%d %b. %Y") %></strong></li>
+      <li class="collection-item"><strong>Date of Order: <%= @order.created_at.strftime("%b. %d, %Y") %></strong></li>
       <li class="collection-item"><strong>Order Total Price: <%=number_to_currency(@order.sum) %></strong></li>
       <li class="collection-item"><strong>Order Status: <%= @order.status %></strong></li>
     </ul>
   </div>
 
   <div class="col s2">
-    <%= button_to "Back to Orders", orders_path %>
+    <%= button_to "Back to Orders", orders_path, method: :get %>
   </div>
 </div>

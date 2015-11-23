@@ -88,7 +88,7 @@ class ActionDispatch::IntegrationTest
     User.create(username: "ryan", password: "waffles", address: "1111 Maple Rd", city: "Denver", state: "CO", zip: 82020)
   end
 
-  def add_2
+  def add_2_items
     visit items_path
     item1 = Item.find_by(title: "pour over0")
     item2 = Item.find_by(title: "drip0")
@@ -106,8 +106,6 @@ class ActionDispatch::IntegrationTest
     fill_in 'Username', with: 'ryan'
     fill_in "Password", with: 'waffles'
     click_button "Login"
-
-    assert '/dashboard', current_path
 
     click_link "Cart"
     click_button "Checkout"

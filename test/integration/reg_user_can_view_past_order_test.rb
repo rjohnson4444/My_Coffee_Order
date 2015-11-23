@@ -7,7 +7,7 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
 
     user = create_user
     create_category_and_items(1)
-    add_2
+    add_2_items
 
     item1 = Item.find_by(title: "pour over0")
     item2 = Item.find_by(title: "drip0")
@@ -55,6 +55,6 @@ class RegUserCanViewPastOrderTest < ActionDispatch::IntegrationTest
     find_link('pour over0').visible?
     assert page.has_content?("ordered")
 
-    assert page.has_content?("#{Order.last.created_at.strftime("%d %b. %Y")}")
+    assert page.has_content?("#{Order.last.created_at.strftime("%b. %d, %Y")}")
     end
 end
