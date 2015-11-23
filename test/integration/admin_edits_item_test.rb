@@ -11,7 +11,7 @@ class AdminEditsItemTest < ActionDispatch::IntegrationTest
 
     item1 = Item.find_by(title: 'pour over0')
     within "#item#{item1.id}" do
-      find_button('Edit Item').click
+      find_button('Edit').click
     end
 
     assert edit_admin_item_path(item1.id), current_path
@@ -20,16 +20,14 @@ class AdminEditsItemTest < ActionDispatch::IntegrationTest
     fill_in 'Description', with: 'Updated Description'
     fill_in 'Price', with: '3'
     fill_in 'Image', with: 'blankImage.com'
-    click_button('Update Item')
+    click_button('Update Drink')
     item_to_check = Item.find_by(title: 'Updated Title')
 
-      refute page.has_content?('pour over0')
-      assert page.has_content?('Updated Title')
-      refute page.has_content?('it taste really good')
-      assert page.has_content?('Updated Description')
+    refute page.has_content?('pour over0')
+    assert page.has_content?('Updated Title')
+    refute page.has_content?('it taste really good')
+    assert page.has_content?('Updated Description')
 
-      assert page.has_content?('$3.00')
-
-
+    assert page.has_content?('$3.00')
   end
 end

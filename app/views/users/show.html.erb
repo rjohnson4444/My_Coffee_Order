@@ -1,5 +1,17 @@
 <h1><%= @user.username.capitalize %>'s Dashboard</h1>
 
-<p>
-  Username: <%= @user.username %>
-</p>
+
+<div class="row">
+  <div class="col s8">
+    <ul class="collection with-header">
+       <li class="collection-header"><h4>Your Address:</h4></li>
+       <li class="collection-item"><%= @user.address %></li>
+       <li class="collection-item"><%= @user.city %></li>
+       <li class="collection-item"><%= @user.state %></li>
+       <li class="collection-item"><%= @user.zip %></li>
+     </ul>
+  </div>
+  <div class="col s4">
+    <%= button_to "View Past Orders", orders_path %>
+  </div>
+</div>

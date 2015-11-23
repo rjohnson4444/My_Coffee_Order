@@ -46,12 +46,12 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
     user = logged_in_user
 
     assert dashboard_path, current_path
-    assert page.has_content?("user has logged in
-    ")
-    assert page.has_content?("Username: user")
+    assert page.has_content?("user has logged in")
+    assert page.has_content?("Your Address:")
 
     refute page.has_link?("Login")
     assert page.has_link?("Logout")
+    assert page.has_link?("Dashboard")
   end
 
   test "logged in user can see coffee items" do
@@ -60,8 +60,8 @@ class UnregisteredUserAuthenticationTest < ActionDispatch::IntegrationTest
 
     visit items_path
 
-    assert page.has_content?("Pour over0")
-    assert page.has_content?("Drip0")
+    assert page.has_content?("pour over0")
+    assert page.has_content?("drip0")
     assert page.has_content?("$4.00")
 
     click_link "Logout"

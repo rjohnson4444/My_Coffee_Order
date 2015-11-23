@@ -142,6 +142,4 @@ class ActionDispatch::IntegrationTest
     click_button "View Cart"
     click_button "Checkout"
   end
-
-
 end

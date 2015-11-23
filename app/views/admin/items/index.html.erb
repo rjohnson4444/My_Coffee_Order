@@ -8,8 +8,9 @@
       <%@items.each do |item| %>
       <li class="collection-item avatar" id="item<%= item.id %>">
         <%= image_tag(item.image, class: "circle") %>
-        <strong><span class="title"><%=link_to item.title.capitalize, item_path(item) %></span></strong>
+        <strong><span class="title"><%=link_to item.title, item_path(item) %></span></strong>
         <p><%= number_to_currency(item.price) %></p>
+        <p><%= item.description %></p>
         <span class="secondary-content"><%= button_to "Edit", edit_admin_item_path(item), method: :get, class: "waves-effect waves-light btn black" %></span>
       </li>
       <% end %>

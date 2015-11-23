@@ -1,4 +1,4 @@
-<h1> <%=current_user.username%>'s Past Orders </h1>
+<h1> <%= current_user.username.capitalize %>'s Past Orders </h1>
 
 <ul class="collection with-header">
   <li class="collection-header"><h4 id="order_id">Order #: <%= @order.id%></h4></li>
@@ -13,3 +13,7 @@
   <li class="collection-item"><strong>Order Total Price: <%=number_to_currency(@order.sum) %></strong></li>
   <li class="collection-item"><strong>Order Status: <%= @order.status %></strong></li>
 </ul>
+
+<div>
+  <%= button_to "Back to Orders", orders_path, class: "" %>
+</div>

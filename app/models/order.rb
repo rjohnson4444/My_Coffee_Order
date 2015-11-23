@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   def add_items_to_order(cart, current_user)
     cart.contents.each do |item_id, quantity|
       subtotal = find_subtotal(item_id, quantity)
-      OrderItem.create(order_id: self.id, item_id: item_id.to_i, quantity: quantity, subtotal: subtotal)
+      self.order_items.create(order_id: self.id, item_id: item_id.to_i, quantity: quantity, subtotal: subtotal)
     end
   end
 

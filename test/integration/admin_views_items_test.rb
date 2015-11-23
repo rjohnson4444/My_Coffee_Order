@@ -18,7 +18,7 @@ class AdminViewsItemsTest < ActionDispatch::IntegrationTest
 
     item1 = Item.find_by(title: "pour over0")
     within "#item#{item1.id}" do
-      find_button('Edit Item').click
+      find_button('Edit').click
     end
   end
 end
