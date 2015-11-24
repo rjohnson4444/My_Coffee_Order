@@ -1,22 +1,34 @@
-<div class="container">
-  <h2 class="centered">Administrator Dashboard</h2>
+<div>
+  <h2 class="center">Administrator Dashboard</h2>
   <hr>
   <br>
   <div class="row">
-    <div class="col s4">
+    <div class="col s3">
       <%= link_to 'View items', admin_items_path, class: "waves-effect waves-light btn #3e2723 brown darken-4" %>
     </div>
-    <div class="col s4">
+
+    <div class="col s3">
       <%= link_to "Edit Account", edit_user_path(@admin), class: "waves-effect waves-light btn #3e2723 brown darken-4" %>
     </div>
-    <div class="col s4">
-      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown1'>Add New Item</a>
 
+    <div class="col s3">
+      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown1'>Add New Item</a>
       <ul id='dropdown1' class='dropdown-content'>
         <li><p class="center">categories</p></li>
         <li class="divider"></li>
         <% @categories.each do |category| %>
         <li id="item-create-<%= category.id %>"><%= link_to "#{category.name}", new_admin_item_path(category_id: category.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col 3">
+      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown2'>Order Status</a>
+      <ul id='dropdown2' class='dropdown-content'>
+        <li><p class="center">Status</p></li>
+        <li class="divider"></li>
+        <% @admin.orders.statuses.each do |status, num| %>
+        <li><%= link_to "#{status}", "#", id: "status-#{status}" %></li>
         <% end %>
       </ul>
     </div>
@@ -30,19 +42,6 @@
         <li class="collection-item">Paid: <%= Order.where(status: 1).count(:status) %></li>
         <li class="collection-item">Cancelled: <%= Order.where(status: 2).count(:status) %></li>
         <li class="collection-item">Completed: <%= Order.where(status: 3).count(:status) %></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col 12">
-      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown2'>Order Status</a>
-      <ul id='dropdown2' class='dropdown-content'>
-        <li><p class="center">Status</p></li>
-        <li class="divider"></li>
-        <% @admin.orders.statuses.each do |status, num| %>
-        <li><%= link_to "#{status}", "#", id: "status-#{status}" %></li>
-        <% end %>
       </ul>
     </div>
   </div>
