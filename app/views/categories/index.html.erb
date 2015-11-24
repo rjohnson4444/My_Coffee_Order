@@ -1,16 +1,8 @@
 <br>
 <h1 class="container">Categories</h1>
-<table>
-  <tr>
-    <td data-field="name">Category Name</td>
-  </tr>
 
+<ul class="collection">
   <%@categories.each do |category| %>
-  <tr>
-    <div id="category<%= "#{category.id}"%>">
-      <td> <%=link_to category.name, category_path(category.slug) %>  </td>
-    </div>
-  </tr>
-    <% end %>
-
-</table>
+    <li class="collection-item" id="category<%= category.id %>"><%=link_to category.name, category_path(category.slug) %></li>
+  <% end %>
+</ul>

@@ -1,16 +1,24 @@
-<table class="container">
-  <thead>
-    <tr>
-      <th data-field="name">Item Name</th>
-      <th data-field="price"> Price</th>
-    </tr>
-    <h1 class="container">Category: <%="#{@category.name}" %></h1>
-    <% @category.items.each do |item| %>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= item.title %></td>
-      <td> <%=number_to_currency(item.price) %></td>
-      <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col s8">
+    <table>
+      <thead>
+        <tr>
+          <th data-field="name">Item Name</th>
+          <th data-field="price"> Price</th>
+        </tr>
+        <h1 class="container">Category: <%="#{@category.name}" %></h1>
+        <% @category.items.each do |item| %>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= item.title %></td>
+          <td> <%=number_to_currency(item.price) %></td>
+          <% end %>
+      </tbody>
+    </table>
+    <br>
+    <div class="col s6">
+      <%= link_to "Back to Categories", categories_path, class: 'waves-effect waves-light btn black' %>
+    </div>
+  </div>
+</div>
