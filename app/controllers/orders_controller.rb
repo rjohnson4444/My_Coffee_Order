@@ -3,8 +3,9 @@ require "order_validator"
 class OrdersController < ApplicationController
 
   def create
-    @order = Order.new(quantity: params[:quantity] , sum: params[:sum])
-    if OrderValidator.validate(@order, @cart, current_user)
+    if current_user
+      @order = current_user.orders.new(quantity: params[:quantity] , sum: params[:sum])
+      OrderValidator.validate(@order, @cart, current_user)
       flash[:order] = "Order was succefully placed"
       redirect_to orders_path
     else

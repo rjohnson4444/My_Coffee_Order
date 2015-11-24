@@ -1,9 +1,7 @@
 <div class="container">
   <h2 class="centered">Administrator Dashboard</h2>
   <hr>
-
   <br>
-
   <div class="row">
     <div class="col s4">
       <%= link_to 'View items', admin_items_path, class: "waves-effect waves-light btn #3e2723 brown darken-4" %>
@@ -34,17 +32,26 @@
         <li class="collection-item" id="status"><%= link_to "Completed:", admin_order_path(0, status: 3) %> <%= Order.where(status: 3).count(:status) %></li>
       </ul>
     </div>
-    <div class="col s6">
-      <label>Filter By Department</label>
-      <%#= select :orders, :filter_status, @orders, {include_blank: true} %>
+  </div>
+
+  <div class="row">
+    <div class="col 12">
+      <a class='dropdown-button btn #3e2723 brown darken-4' href='<%= new_admin_item_path %>' data-activates='dropdown2'>Order Status</a>
+      <ul id='dropdown2' class='dropdown-content'>
+        <li><p class="center">Status</p></li>
+        <li class="divider"></li>
+        <% @admin.orders.statuses.each do |status, num| %>
+        <li id="status-<%= status %>"><%= link_to "#{status}", "#" %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 
   <div class="order-info">
     <% @orders.each do |order| %>
-      <ul class="collapsible popout order" data-collapsible="accordion">
-        <li data-status="<%= order.status %>">
-          <div class="collapsible-header<%= order.id %>">
+      <ul class="collapsible popout order" data-collapsible="accordion" data-status="<%= order.status %>">
+        <li>
+          <div class="collapsible-header collapsible-header<%= order.id %>">
             <%= link_to "Order number: #{order.id}", admin_order_path(order) %>
           </div>
           <div class="collapsible-body">

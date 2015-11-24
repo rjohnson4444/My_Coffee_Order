@@ -7,7 +7,8 @@ class AdminCanViewAllOrdersTest < ActionDispatch::IntegrationTest
     user = create_user
     create_category_and_items(1)
     item1 = Item.find_by(title: "pour over0")
-
+    user_makes_an_order
+    click_link "Logout"
 
     visit items_path
 
@@ -17,9 +18,7 @@ class AdminCanViewAllOrdersTest < ActionDispatch::IntegrationTest
 
     click_button "View Cart"
     click_button "Checkout"
-    click_link "Logout"
 
-    user_makes_an_order
     logged_in_admin
     visit admin_dashboard_index_path
 

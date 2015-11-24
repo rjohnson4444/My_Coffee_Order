@@ -53,9 +53,7 @@ class Seed
 
     @order3 = @category3.items.create(title: "Americano", description: "A smooth coffee that mixes shots of espress with hot water", price:2, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMNSxUtudEdAWOJWjG-Jb7MrR37jd1teNNFAdN3JA-SdMuji35"),
 
-
     @order4 = @category1.items.create(title: "Fresh Brewed Coffee", description: "Black Coffee roasted and brewed in house", price:2, image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSgSHt_eNeOtwj7YfD2pzb936T-p967kHRdSVz0rFAijRxQtCP_Kg")
-
   end
 end
 

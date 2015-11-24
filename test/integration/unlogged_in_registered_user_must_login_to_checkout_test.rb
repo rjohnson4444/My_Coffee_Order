@@ -14,22 +14,22 @@ class UnloggedInRegisteredUserMustLoginToCheckoutTest < ActionDispatch::Integrat
 
     visit "/cart"
     click_button "Checkout"
-    
+
     assert "/login", current_path
 
     assert page.has_content?("Must Login")
-     fill_in 'Username', with: 'ryan'
-     fill_in "Password", with: 'waffles'
-     click_button "Login"
+    fill_in 'Username', with: 'ryan'
+    fill_in "Password", with: 'waffles'
+    click_button "Login"
 
-     click_link "Cart"
+    click_link "Cart"
 
-     assert 0, Order.all.count
+    assert 0, Order.all.count
 
-     click_button "Checkout"
+    click_button "Checkout"
 
-     assert 1, Order.all.count
-     assert '/orders', current_path
-     assert page.has_content?("Order was succefully placed")
+    assert 1, Order.all.count
+    assert '/orders', current_path
+    assert page.has_content?("Order was succefully placed")
   end
 end
