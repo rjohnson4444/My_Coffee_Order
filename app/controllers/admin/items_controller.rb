@@ -19,14 +19,13 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item = Item.find_by(slug: params[:slug])
   end
 
   def update
-    @item = Item.find(params[:id])
-    @item.update(title: params[:item][:title], description: params[:item][:description], price: params[:item][:price], image: params[:item][:image])
+    @item = Item.find_by(slug: params[:slug])
+    @item.update(item_params)
     redirect_to admin_items_path
-    #NEEDTO Add validations and an else if an update doesn't save
   end
 
   private

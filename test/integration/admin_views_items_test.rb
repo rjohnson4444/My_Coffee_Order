@@ -17,6 +17,7 @@ class AdminViewsItemsTest < ActionDispatch::IntegrationTest
     assert page.has_content?('it taste really good')
 
     item1 = Item.find_by(title: "pour over0")
+
     within "#item#{item1.id}" do
       find_button('Edit').click
     end

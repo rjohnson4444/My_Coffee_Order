@@ -8,9 +8,9 @@
       <%@items.each do |item| %>
       <li class="collection-item avatar" id="item<%= item.id %>">
         <%= image_tag(item.image, class: "circle") %>
-        <strong><span class="title<%= item.title %>"><%=link_to item.title, item_path(item) %></span></strong>
+        <strong><span class="title<%= item.title %>"><%=link_to item.title, item_path(item.slug) %></span></strong>
         <p><%= number_to_currency(item.price) %></p>
-        <span class="secondary-content"><%= button_to "Add to Cart", cart_items_path(id: item.id) %></span>
+        <span class="secondary-content"><%= button_to "Add to Cart", cart_items_path(id: item.id), id: "add-#{item.id}" %></span>
       </li>
       <% end %>
     </ul>
