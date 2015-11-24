@@ -16,12 +16,11 @@ class Order < ActiveRecord::Base
     end
   end
 
- def quantity_of_item(item_id)
-  self.order_items.find_by(item_id: item_id).quantity
- end
+  def quantity_of_item(item_id)
+    self.order_items.find_by(item_id: item_id).quantity
+  end
 
- def subtotal_of_item(item_id)
-   self.order_items.find_by(item_id: item_id).subtotal
- end
-
+  def subtotal_of_item(item_id)
+    self.order_items.find_by(item_id: item_id).subtotal
+  end
 end

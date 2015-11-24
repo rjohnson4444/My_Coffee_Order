@@ -29,7 +29,7 @@
         <li class="collection-item"><%= link_to "Ordered:",   admin_order_path(0, status: 0) %> <%= Order.where(status: 0).count(:status) %></li>
         <li class="collection-item"><%= link_to "Paid:",      admin_order_path(0, status: 1) %>  <%= Order.where(status: 1).count(:status) %></li>
         <li class="collection-item"><%= link_to "Cancelled:", admin_order_path(0, status: 2) %> <%= Order.where(status: 2).count(:status) %></li>
-        <li class="collection-item" id="status"><%= link_to "Completed:", admin_order_path(0, status: 3) %> <%= Order.where(status: 3).count(:status) %></li>
+        <li class="collection-item"><%= link_to "Completed:", admin_order_path(0, status: 3) %> <%= Order.where(status: 3).count(:status) %></li>
       </ul>
     </div>
   </div>
@@ -41,7 +41,7 @@
         <li><p class="center">Status</p></li>
         <li class="divider"></li>
         <% @admin.orders.statuses.each do |status, num| %>
-        <li id="status-<%= status %>"><%= link_to "#{status}", "#" %></li>
+        <li><%= link_to "#{status}", "#", id: "status-#{status}" %></li>
         <% end %>
       </ul>
     </div>
