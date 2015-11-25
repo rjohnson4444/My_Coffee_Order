@@ -5,7 +5,7 @@
     <ul class="collection with-header">
       <li class="collection-header"><h4 id="order_id">Order #: <%= @order.id%></h4></li>
       <% @order.items.each do |item| %>
-      <li class="collection-item"><h4 id="item-title<%= item.id %>"><%= link_to "#{item.title}", item_path(item)%></h4></li>
+      <li class="collection-item"><h5 id="item-title<%= item.id %>"><%= link_to "#{item.title}", item_path(item)%></h5></li>
       <li class="collection-item" id="item-quantity<%= item.id %>">Quantity: <%= @order.quantity_of_item(item.id) %></li>
       <li class="collection-item" id="item-price<%= item.id %>" >Price: <%= number_to_currency(item.price) %></li>
       <br>
